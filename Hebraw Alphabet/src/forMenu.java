@@ -1,18 +1,37 @@
 import java.awt.*;
+import java.awt.event.*;
 
 import javax.swing.*;
 
-public class forMenu extends JPanel{
+
+enum menuMode{
+	modeSelect, consonant
+}
+
+public class forMenu extends JPanel implements ActionListener{
 	//스윙 컴포넌트들
+	JLabel type;
+	
 	JComboBox menuList;
-	JButton Next;
+	JButton nextQuiz, submit, nextWord, prevWord;
+	JRadioButton wordNote, quiz;
+	
+	JTextArea incTitle, incorrectList;
+	JTextField submitArea;
+	JScrollPane spForIL;
 	
 	//기본타입 변수들
 	String[] menubar = {"모드를 선택해주세요","자음",};
 	Color defaultColor = Color.decode("#00B992");
-	Font defaultFont = new Font("나눔바른펜",Font.BOLD,20);
+	Font defaultFontBig = new Font("나눔바른펜",Font.BOLD,20);
+	Font defaultFontNor = new Font("나눔바른펜",Font.BOLD,15);
+	Font defaultFontSma = new Font("나눔바른펜",Font.BOLD,10);
 	
-	forMenu(){
+	//클래스 저장
+	quizboard B;
+	
+	forMenu(JFrame quizBoard){
+		this.B = (quizboard)quizBoard;
 		
 		setLayout(null);
 		setSize(180,355);
@@ -24,11 +43,125 @@ public class forMenu extends JPanel{
 		menuList.setBounds(5,5,170,30);
 		menuList.setBackground(defaultColor);
 		menuList.setForeground(Color.WHITE);
-		menuList.setFont(defaultFont);
+		menuList.setFont(defaultFontBig);
+		menuList.addActionListener(this);
 		add(menuList);
 		
 		
-		//
+		//퀴즈 on, off 모드
+		wordNote = new JRadioButton("단어장");
+		wordNote.setBounds(5,45,70,30);
+		wordNote.setFont(defaultFontNor);
+		wordNote.addActionListener(this);
+		add(wordNote);
+		
+		quiz = new JRadioButton("퀴즈");
+		quiz.setBounds(80,45,70,30);
+		quiz.setFont(defaultFontNor);
+		quiz.addActionListener(this);
+		add(quiz);
+		
+		ButtonGroup bGroup = new ButtonGroup();
+		bGroup.add(quiz);bGroup.add(wordNote);
+		
+		//quizmode
+		forQuiz(true);
+		
+		
+		this.requestFocus();
+		setFocusable(true);
+		setVisible(true);
+	}
+	
+	//모드선택에 따라 보이도록
+	public void afterModeSelect() {
+		
+	}
+	
+	//단어장 모드
+	public void forNote(boolean quizOrNote) {
+		
+	}
+	
+	//퀴즈모드
+	public void forQuiz(boolean quizOrNote) {
+		//오답노트 표시제목
+		incTitle = new JTextArea("오답노트");
+		incTitle.setFont(defaultFontSma);
+		incTitle.setDisabledTextColor(defaultColor);
+		incTitle.setBackground(new Color(40,40,40));
+		incTitle.setEnabled(false);
+		incTitle.setBounds(5,80,170,15);
+		add(incTitle);
+		
+		//오답노트 리스트
+		incorrectList = new JTextArea("-'א'의 이름: 알레프");
+		incorrectList.setBackground(Color.WHITE);
+		incorrectList.setDisabledTextColor(new Color(40,40,40));
+		incorrectList.setDragEnabled(true);incTitle.setEditable(false);
+		
+		//리스트 텍스트창에 스크롤 넣기
+		spForIL = new JScrollPane(incorrectList,JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED
+				,JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+		//JFrame의 컨텐트페인에 스크롤페인 등록
+		B.getContentPane().add(spForIL);
+		spForIL.setBounds(10,100,170,100);
+		
+		//정답 입력라벨
+		type = new JLabel("뜻:");
+		type.setForeground(defaultColor);
+		//위 사항은 '뜻:', '이름(한글):' '발음:', '수:' 으로 분화될 예정입니다.
+		type.setFont(defaultFontNor);
+		type.setBounds(5,250,40,30);
+		add(type);
+		
+		//정답 입력 텍스트 필드
+		submitArea = new JTextField(15);
+		submitArea.setFont(defaultFontNor);
+		submitArea.setBounds(5,280,100,25);
+		add(submitArea);
+		
+		//정답 제출 버튼
+		submit = new JButton("제출");
+		submit.setFont(defaultFontNor);
+		submit.setForeground(Color.WHITE);
+		submit.setBackground(defaultColor);
+		submit.setBounds(110,280,65,24);
+		submit.addActionListener(this);
+		add(submit);
+		
+		//다음 퀴즈단어 버튼
+		nextQuiz = new JButton("다음 퀴즈");
+		nextQuiz.setFont(defaultFontNor);
+		nextQuiz.setForeground(Color.WHITE);
+		nextQuiz.setBackground(defaultColor);
+		nextQuiz.setBounds(5,310,170,40);
+		nextQuiz.addActionListener(this);
+		add(nextQuiz);
+		
+		if(quizOrNote) {
+			incTitle.setVisible(true);
+			incorrectList.setVisible(true);
+			spForIL.setVisible(true);
+			type.setVisible(true);
+			submitArea.setVisible(true);
+			submit.setVisible(true);
+			nextQuiz.setVisible(true);
+		}
+		else {
+			incTitle.setVisible(false);
+			incorrectList.setVisible(false);
+			spForIL.setVisible(false);
+			type.setVisible(false);
+			submitArea.setVisible(false);
+			submit.setVisible(false);
+			nextQuiz.setVisible(false);
+		}
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		// TODO Auto-generated method stub
 		
 	}
 }
