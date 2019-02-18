@@ -3,14 +3,14 @@ import java.awt.*;
 import javax.swing.*;
 
 public class forMenu extends JPanel{
-	//¸Ş´º¸¦ À§ÇÑ JÆĞ³Î
+	//ìŠ¤ìœ™ ì»´í¬ë„ŒíŠ¸ë“¤
 	JComboBox menuList;
 	JButton Next;
 	
-	//±âº»Å¸ÀÔ º¯¼ö ÀúÀå
-	String[] menubar = {"¸ğµå¸¦ ¼±ÅÃÇØÁÖ¼¼¿ä","ÀÚÀ½",};
+	//ê¸°ë³¸íƒ€ì… ë³€ìˆ˜ë“¤
+	String[] menubar = {"ëª¨ë“œë¥¼ ì„ íƒí•´ì£¼ì„¸ìš”","ììŒ",};
 	Color defaultColor = Color.decode("#00B992");
-	Font defaultFont = new Font("³ª´®¹Ù¸¥Ææ",Font.BOLD,20);
+	Font defaultFont = new Font("ë‚˜ëˆ”ë°”ë¥¸íœ",Font.BOLD,20);
 	
 	forMenu(){
 		
@@ -18,7 +18,7 @@ public class forMenu extends JPanel{
 		setSize(180,355);
 		this.setBorder(BorderFactory.createEtchedBorder());
 		
-		//¸Ş´º¹Ù
+		//ë©”ë‰´
 		menuList = new JComboBox(menubar);
 		menuList.setSelectedIndex(0);
 		menuList.setBounds(5,5,170,30);
