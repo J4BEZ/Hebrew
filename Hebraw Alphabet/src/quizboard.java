@@ -24,7 +24,7 @@ public class quizboard extends JFrame implements ActionListener, MouseListener{
 		setSize(600,400);
 		setLayout(null);
 		setLocation(screenSize.width/2-300,screenSize.height/2-200);
-		setTitle("[Hebrew Alphabet]");
+		setTitle("히브리어 알파벳 배우기");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setResizable(false); //unable to Resize the frame size.
 		

@@ -5,6 +5,5 @@ public class MainFrame {
 		// TODO Auto-generated method stub 
 		new quizboard();
 	} 
-
 }  
  
