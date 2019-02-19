@@ -237,6 +237,7 @@ public class forMenu extends JPanel implements ActionListener{
 		//메뉴 선택바
 		if(menuList.getSelectedItem().equals("모드를 선택해주세요")) {
 			mode = menuMode.modeSelect;
+			wordNote.setSelected(true);
 		}
 		else if(menuList.getSelectedItem().equals("자음")) {
 			mode = menuMode.consonant;
