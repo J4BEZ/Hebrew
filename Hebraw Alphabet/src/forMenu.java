@@ -4,12 +4,12 @@ import javax.swing.*;
 
 
 enum menuMode{
-	modeSelect, consonant
+	modeSelect, consonant, vowel, programINF
 }
 
 public class forMenu extends JPanel implements ActionListener{
 	//스윙 컴포넌트들
-	JLabel type;
+	JLabel type, thumbnail;
 	
 	JComboBox menuList;
 	JButton nextQuiz, submit, nextWord, prevWord;
@@ -22,7 +22,9 @@ public class forMenu extends JPanel implements ActionListener{
 	ButtonGroup bGroup;
 	
 	//기본타입 변수들
-	String[] menubar = {"모드를 선택해주세요","자음"};
+	String[] menubar = {"모드를 선택해주세요","자음","모음","프로그램 정보"};
+	String wrongList = "";
+	
 	Color defaultColor = Color.decode("#00B992");
 	Font defaultFontBig = new Font("나눔바른펜",Font.BOLD,20);
 	Font defaultFontNor = new Font("나눔바른펜",Font.BOLD,15);
@@ -53,7 +55,14 @@ public class forMenu extends JPanel implements ActionListener{
 		menuList.addActionListener(this);
 		add(menuList);
 		
-		
+		//썸네일
+		thumbnail = new JLabel("יַעְבֵּץ");
+		thumbnail.setFont(new Font("Serif",Font.BOLD,30));
+		thumbnail.setForeground(defaultColor);
+		thumbnail.setBounds(5,300,170,50);
+		thumbnail.setVisible(true);
+		add(thumbnail);
+
 		//퀴즈 on, off 모드
 		wordNote = new JRadioButton("단어장");
 		wordNote.setBounds(5,45,70,30);
@@ -77,7 +86,6 @@ public class forMenu extends JPanel implements ActionListener{
 		//quizmode
 		forQuiz();
 		forNote();
-		
 		
 		this.requestFocus();
 		setFocusable(true);
@@ -121,7 +129,7 @@ public class forMenu extends JPanel implements ActionListener{
 		add(incTitle);
 		
 		//오답노트 리스트
-		incorrectList = new JTextArea("-'א'의 이름: 알레프");
+		incorrectList = new JTextArea(wrongList);
 		incorrectList.setBackground(Color.WHITE);
 		incorrectList.setDisabledTextColor(new Color(40,40,40));
 		incorrectList.setDragEnabled(true);
@@ -180,6 +188,7 @@ public class forMenu extends JPanel implements ActionListener{
 		switch(m) {
 		
 		case modeSelect:
+		case programINF:
 			wordNote.setVisible(false);
 			quiz.setVisible(false);
 			
@@ -193,9 +202,10 @@ public class forMenu extends JPanel implements ActionListener{
 			
 			prevWord.setVisible(false);
 			nextWord.setVisible(false);
-			
 			break;
+			
 		case consonant:
+		case vowel:
 			wordNote.setVisible(true);
 			quiz.setVisible(true);
 			
@@ -238,12 +248,21 @@ public class forMenu extends JPanel implements ActionListener{
 		if(menuList.getSelectedItem().equals("모드를 선택해주세요")) {
 			mode = menuMode.modeSelect;
 			wordNote.setSelected(true);
+			thumbnail.setVisible(true);
 		}
 		else if(menuList.getSelectedItem().equals("자음")) {
 			mode = menuMode.consonant;
+			thumbnail.setVisible(false);
 		}
-		
-		
+		else if(menuList.getSelectedItem().equals("모음")) {
+			mode = menuMode.vowel;
+			thumbnail.setVisible(false);
+		}
+		else if(menuList.getSelectedItem().equals("프로그램 정보")) {
+			mode = menuMode.modeSelect;
+			wordNote.setSelected(true);
+			thumbnail.setVisible(true);
+		}
 		
 		//퀴즈 or 단어장
 		if(wordNote.isSelected()) {
@@ -252,7 +271,6 @@ public class forMenu extends JPanel implements ActionListener{
 		else if(quiz.isSelected()) {
 			quizOrNote = true;
 		}
-		
 		
 		checkQuizorNote(quizOrNote,mode);
 	}
