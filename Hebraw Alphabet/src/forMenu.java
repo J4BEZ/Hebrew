@@ -1,6 +1,5 @@
 import java.awt.*;
 import java.awt.event.*;
-
 import javax.swing.*;
 
 
@@ -20,18 +19,25 @@ public class forMenu extends JPanel implements ActionListener{
 	JTextField submitArea;
 	JScrollPane spForIL;
 	
+	ButtonGroup bGroup;
+	
 	//기본타입 변수들
-	String[] menubar = {"모드를 선택해주세요","자음",};
+	String[] menubar = {"모드를 선택해주세요","자음"};
 	Color defaultColor = Color.decode("#00B992");
 	Font defaultFontBig = new Font("나눔바른펜",Font.BOLD,20);
 	Font defaultFontNor = new Font("나눔바른펜",Font.BOLD,15);
 	Font defaultFontSma = new Font("나눔바른펜",Font.BOLD,10);
+	boolean quizOrNote;
 	
 	//클래스 저장
 	quizboard B;
 	
+	//이넘
+	menuMode mode;
+	
 	forMenu(JFrame quizBoard){
 		this.B = (quizboard)quizBoard;
+		mode = menuMode.modeSelect;
 		
 		setLayout(null);
 		setSize(180,355);
@@ -53,19 +59,24 @@ public class forMenu extends JPanel implements ActionListener{
 		wordNote.setBounds(5,45,70,30);
 		wordNote.setFont(defaultFontNor);
 		wordNote.addActionListener(this);
+		wordNote.setSelected(true);
+		wordNote.setVisible(false);
 		add(wordNote);
 		
 		quiz = new JRadioButton("퀴즈");
 		quiz.setBounds(80,45,70,30);
 		quiz.setFont(defaultFontNor);
 		quiz.addActionListener(this);
+		quiz.setSelected(false);
+		quiz.setVisible(false);
 		add(quiz);
 		
-		ButtonGroup bGroup = new ButtonGroup();
+		bGroup = new ButtonGroup();
 		bGroup.add(quiz);bGroup.add(wordNote);
 		
 		//quizmode
-		forQuiz(true);
+		forQuiz();
+		forNote();
 		
 		
 		this.requestFocus();
@@ -73,18 +84,33 @@ public class forMenu extends JPanel implements ActionListener{
 		setVisible(true);
 	}
 	
-	//모드선택에 따라 보이도록
-	public void afterModeSelect() {
-		
-	}
 	
 	//단어장 모드
-	public void forNote(boolean quizOrNote) {
+	public void forNote() {
+		//TODO 이전단어 다음단어 버튼만 만들면 될듯?
+		//TODO 그 담에 모드에따라 보일지 안보일지 설정
+		prevWord = new JButton("이전");
+		prevWord.setForeground(defaultColor);
+		prevWord.setBackground(Color.WHITE);
+		prevWord.setFont(defaultFontNor);
+		prevWord.setBounds(5,280,80,40);
+		prevWord.addActionListener(this);
+		add(prevWord);
 		
+		nextWord = new JButton("다음");
+		nextWord.setForeground(Color.WHITE);
+		nextWord.setBackground(defaultColor);
+		nextWord.setFont(defaultFontNor);
+		nextWord.setBounds(90,280,80,40);
+		nextWord.addActionListener(this);
+		add(nextWord);
+		
+		prevWord.setVisible(false);
+		nextWord.setVisible(false);
 	}
 	
 	//퀴즈모드
-	public void forQuiz(boolean quizOrNote) {
+	public void forQuiz() {
 		//오답노트 표시제목
 		incTitle = new JTextArea("오답노트");
 		incTitle.setFont(defaultFontSma);
@@ -98,7 +124,8 @@ public class forMenu extends JPanel implements ActionListener{
 		incorrectList = new JTextArea("-'א'의 이름: 알레프");
 		incorrectList.setBackground(Color.WHITE);
 		incorrectList.setDisabledTextColor(new Color(40,40,40));
-		incorrectList.setDragEnabled(true);incTitle.setEditable(false);
+		incorrectList.setDragEnabled(true);
+		incorrectList.setEditable(false);
 		
 		//리스트 텍스트창에 스크롤 넣기
 		spForIL = new JScrollPane(incorrectList,JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED
@@ -139,16 +166,23 @@ public class forMenu extends JPanel implements ActionListener{
 		nextQuiz.addActionListener(this);
 		add(nextQuiz);
 		
-		if(quizOrNote) {
-			incTitle.setVisible(true);
-			incorrectList.setVisible(true);
-			spForIL.setVisible(true);
-			type.setVisible(true);
-			submitArea.setVisible(true);
-			submit.setVisible(true);
-			nextQuiz.setVisible(true);
-		}
-		else {
+		incTitle.setVisible(false);
+		incorrectList.setVisible(false);
+		spForIL.setVisible(false);
+		type.setVisible(false);
+		submitArea.setVisible(false);
+		submit.setVisible(false);
+		nextQuiz.setVisible(false);
+	}
+	
+	public void checkQuizorNote(boolean quizOrNote, menuMode m) {
+		
+		switch(m) {
+		
+		case modeSelect:
+			wordNote.setVisible(false);
+			quiz.setVisible(false);
+			
 			incTitle.setVisible(false);
 			incorrectList.setVisible(false);
 			spForIL.setVisible(false);
@@ -156,12 +190,69 @@ public class forMenu extends JPanel implements ActionListener{
 			submitArea.setVisible(false);
 			submit.setVisible(false);
 			nextQuiz.setVisible(false);
+			
+			prevWord.setVisible(false);
+			nextWord.setVisible(false);
+			
+			break;
+		case consonant:
+			wordNote.setVisible(true);
+			quiz.setVisible(true);
+			
+			if(quizOrNote) {
+				incTitle.setVisible(true);
+				incorrectList.setVisible(true);
+				spForIL.setVisible(true);
+				type.setVisible(true);
+				submitArea.setVisible(true);
+				submit.setVisible(true);
+				nextQuiz.setVisible(true);
+				
+				prevWord.setVisible(false);
+				nextWord.setVisible(false);
+			}
+			else {
+				incTitle.setVisible(false);
+				incorrectList.setVisible(false);
+				spForIL.setVisible(false);
+				type.setVisible(false);
+				submitArea.setVisible(false);
+				submit.setVisible(false);
+				nextQuiz.setVisible(false);
+				
+				prevWord.setVisible(true);
+				nextWord.setVisible(true);
+			}
+			break;
+			
+		default:
+			break;
+		
 		}
+		
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
+		//메뉴 선택바
+		if(menuList.getSelectedItem().equals("모드를 선택해주세요")) {
+			mode = menuMode.modeSelect;
+		}
+		else if(menuList.getSelectedItem().equals("자음")) {
+			mode = menuMode.consonant;
+		}
 		
+		
+		
+		//퀴즈 or 단어장
+		if(wordNote.isSelected()) {
+			quizOrNote = false;
+		}
+		else if(quiz.isSelected()) {
+			quizOrNote = true;
+		}
+		
+		
+		checkQuizorNote(quizOrNote,mode);
 	}
 }
