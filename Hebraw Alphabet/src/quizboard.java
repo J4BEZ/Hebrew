@@ -20,7 +20,8 @@ public class quizboard extends JFrame implements ActionListener, MouseListener{
 	//기본타입을 위한 공간
 	
 	//외부 클래스들
-	forMenu f = new forMenu(this);
+	forMenu fm = new forMenu(this);
+	forAlphabet fa = new forAlphabet(this,fm);
 	
 	quizboard(){
 		//init setting
@@ -32,8 +33,12 @@ public class quizboard extends JFrame implements ActionListener, MouseListener{
 		setResizable(false); //크기 변경 불가능
 		
 		//메뉴 부분을 위해서
-		f.setLocation(5,5);
-		add(f);
+		fm.setLocation(5,5);
+		add(fm);
+		
+		//단어장 표시부분을 위해서
+		fa.setLocation(190,5);
+		add(fa);
 		
 		//히브리어 '알파벳' 위한 공간
 		hebrew = new JLabel("א");
@@ -47,9 +52,6 @@ public class quizboard extends JFrame implements ActionListener, MouseListener{
 		setVisible(true);
 	}
 	
-	public void underline(Graphics g) {
-		//g.drawLine(arg0, arg1, arg2, arg3);
-	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
