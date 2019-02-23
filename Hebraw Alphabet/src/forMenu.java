@@ -46,7 +46,7 @@ public class forMenu extends JPanel implements ActionListener{
 	forMenu(JFrame quizBoard,JPanel forAlphabet){
 		this.B = (quizboard)quizBoard;
 		this.fa = (forAlphabet)forAlphabet;
-		fa.fm = this;//동기화
+		fa.fm = this;//동기화 
 		
 		mode = menuMode.modeSelect;
 		setLayout(null);
