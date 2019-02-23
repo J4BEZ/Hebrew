@@ -31,10 +31,10 @@ public class forAlphabet extends JPanel implements ActionListener{
 		
 		////////////////////////////////////////////////////////////
 		//히브리어 알파벳
-		hebAlpha = new JLabel("ל");
+		hebAlpha = new JLabel("א");
 		hebAlpha.setFont(fontForHebAlp);
 		hebAlpha.setForeground(defaultColor);
-		hebAlpha.setBounds(50,-15,170,190);
+		hebAlpha.setBounds(50,-20,170,195);
 		//hebAlpha.setHorizontalAlignment(SwingConstants.RIGHT);
 		add(hebAlpha);
 		
@@ -53,7 +53,7 @@ public class forAlphabet extends JPanel implements ActionListener{
 	public void paintComponent(Graphics g){
 		super.paintComponent(g);//없으면 이상한 일 일어나요
 		Graphics2D g2d = (Graphics2D)g;
-		if(fm!=null) {//아 이거 왜 안되지
+		if(fm!=null) {//아 이거 왜 안돼
 			switch(fm.mode) {
 			case modeSelect:
 				break;
