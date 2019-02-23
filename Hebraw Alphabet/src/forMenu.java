@@ -15,6 +15,8 @@ public class forMenu extends JPanel implements ActionListener{
 	JButton nextQuiz, submit, nextWord, prevWord;
 	JRadioButton wordNote, quiz;
 	
+	JCheckBox showUnderLine;
+	
 	JTextArea incTitle, incorrectList;
 	JTextField submitArea;
 	JScrollPane spForIL;
@@ -32,15 +34,21 @@ public class forMenu extends JPanel implements ActionListener{
 	boolean quizOrNote;
 	
 	//클래스 저장
-	quizboard B;
+	quizboard B; forAlphabet fa;
 	
 	//이넘
 	menuMode mode;
 	
 	forMenu(JFrame quizBoard){
-		this.B = (quizboard)quizBoard;
 		mode = menuMode.modeSelect;
+	}
+	
+	forMenu(JFrame quizBoard,JPanel forAlphabet){
+		this.B = (quizboard)quizBoard;
+		this.fa = (forAlphabet)forAlphabet;
+		fa.fm = this;//동기화
 		
+		mode = menuMode.modeSelect;
 		setLayout(null);
 		setSize(180,355);
 		this.setBorder(BorderFactory.createEtchedBorder());
@@ -97,6 +105,12 @@ public class forMenu extends JPanel implements ActionListener{
 	public void forNote() {
 		//TODO 이전단어 다음단어 버튼만 만들면 될듯?
 		//TODO 그 담에 모드에따라 보일지 안보일지 설정
+		showUnderLine = new JCheckBox("밑줄 보이기");
+		showUnderLine.setFont(defaultFontNor);
+		showUnderLine.setBounds(5,220,100,40);
+		showUnderLine.addActionListener(this);
+		add(showUnderLine);
+		
 		prevWord = new JButton("이전");
 		prevWord.setForeground(defaultColor);
 		prevWord.setBackground(Color.WHITE);
@@ -113,6 +127,7 @@ public class forMenu extends JPanel implements ActionListener{
 		nextWord.addActionListener(this);
 		add(nextWord);
 		
+		showUnderLine.setVisible(false);
 		prevWord.setVisible(false);
 		nextWord.setVisible(false);
 	}
@@ -200,6 +215,7 @@ public class forMenu extends JPanel implements ActionListener{
 			submit.setVisible(false);
 			nextQuiz.setVisible(false);
 			
+			showUnderLine.setVisible(false);
 			prevWord.setVisible(false);
 			nextWord.setVisible(false);
 			break;
@@ -218,6 +234,7 @@ public class forMenu extends JPanel implements ActionListener{
 				submit.setVisible(true);
 				nextQuiz.setVisible(true);
 				
+				showUnderLine.setVisible(true);
 				prevWord.setVisible(false);
 				nextWord.setVisible(false);
 			}
@@ -230,6 +247,7 @@ public class forMenu extends JPanel implements ActionListener{
 				submit.setVisible(false);
 				nextQuiz.setVisible(false);
 				
+				showUnderLine.setVisible(true);
 				prevWord.setVisible(true);
 				nextWord.setVisible(true);
 			}
@@ -244,10 +262,13 @@ public class forMenu extends JPanel implements ActionListener{
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
+		
+		
 		//메뉴 선택바
 		if(menuList.getSelectedItem().equals("모드를 선택해주세요")) {
 			mode = menuMode.modeSelect;
 			wordNote.setSelected(true);
+			showUnderLine.setSelected(false);
 			thumbnail.setVisible(true);
 		}
 		else if(menuList.getSelectedItem().equals("자음")) {
@@ -261,8 +282,10 @@ public class forMenu extends JPanel implements ActionListener{
 		else if(menuList.getSelectedItem().equals("프로그램 정보")) {
 			mode = menuMode.modeSelect;
 			wordNote.setSelected(true);
+			showUnderLine.setSelected(false);
 			thumbnail.setVisible(true);
 		}
+		//메뉴 동기화
 		
 		//퀴즈 or 단어장
 		if(wordNote.isSelected()) {
@@ -273,5 +296,13 @@ public class forMenu extends JPanel implements ActionListener{
 		}
 		
 		checkQuizorNote(quizOrNote,mode);
+		
+		
+		if(showUnderLine.isSelected()) {
+			fa.showUnderLineBool = true;
+		}
+		else {
+			fa.showUnderLineBool = false;
+		}
 	}
 }
