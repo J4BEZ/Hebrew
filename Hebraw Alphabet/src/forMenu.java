@@ -28,9 +28,12 @@ public class forMenu extends JPanel implements ActionListener{
 	String wrongList = "";
 	
 	Color defaultColor = Color.decode("#00B992");
+	Color defaultDark = new Color(40,40,40);
+	Font defaultFontLar = new Font("나눔바른펜",Font.BOLD,30);
 	Font defaultFontBig = new Font("나눔바른펜",Font.BOLD,20);
 	Font defaultFontNor = new Font("나눔바른펜",Font.BOLD,15);
 	Font defaultFontSma = new Font("나눔바른펜",Font.BOLD,10);
+	
 	boolean quizOrNote;
 	
 	//클래스 저장
