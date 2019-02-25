@@ -27,7 +27,7 @@ public class quizboard extends JFrame implements ActionListener, MouseListener{
 		setSize(600,400);
 		setLayout(null);
 		setLocation(screenSize.width/2-300,screenSize.height/2-200);
-		setTitle("히브리어 알파벳 \t\t\t  https://j4bez.tistory.com");
+		setTitle("히브리어 알파벳 ");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setResizable(false); //크기 변경 불가능
 		

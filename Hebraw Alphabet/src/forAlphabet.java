@@ -57,6 +57,8 @@ public class forAlphabet extends JPanel implements ActionListener{
 		Biblekor.setForeground(fm.defaultDark);
 		Biblekor.setBounds(10,160,370,130);
 		add(Biblekor);
+		
+		
 	}
 	
 	public void forWordMode() {
@@ -154,6 +156,11 @@ public class forAlphabet extends JPanel implements ActionListener{
 		if(fm!=null)
 			switch(fm.mode){
 			case modeSelect:
+				////////메뉴 인트로 관련///////////
+				menuIntro.setVisible(true);
+				Biblekor.setVisible(true);
+				/////////////////////////////				
+				
 				////단어장 &퀴즈 관련/////
 				hebAlpha.setVisible(false);
 				hebName0.setVisible(false);
@@ -170,6 +177,10 @@ public class forAlphabet extends JPanel implements ActionListener{
 			
 			case consonant:
 			case vowel:
+				////////메뉴 인트로 관련///////////
+				menuIntro.setVisible(false);
+				Biblekor.setVisible(false);
+				/////////////////////////////
 				if(fm.quizOrNote) {
 					hebAlpha.setVisible(false);
 					hebName0.setVisible(false);
@@ -198,6 +209,10 @@ public class forAlphabet extends JPanel implements ActionListener{
 			break;
 			
 			case programINF:
+			////////메뉴 인트로 관련///////////
+			menuIntro.setVisible(false);
+			Biblekor.setVisible(false);
+			/////////////////////////////
 			////단어장 &퀴즈 관련/////
 			hebAlpha.setVisible(false);
 			hebName0.setVisible(false);
@@ -214,6 +229,7 @@ public class forAlphabet extends JPanel implements ActionListener{
 			
 			
 			default:
+				System.out.println("에러: 등록되지 않은 모드입니다");
 				break;
 		}
 	}

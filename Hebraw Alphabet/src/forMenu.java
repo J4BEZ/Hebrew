@@ -283,7 +283,7 @@ public class forMenu extends JPanel implements ActionListener{
 			thumbnail.setVisible(false);
 		}
 		else if(menuList.getSelectedItem().equals("프로그램 정보")) {
-			mode = menuMode.modeSelect;
+			mode = menuMode.programINF;
 			wordNote.setSelected(true);
 			showUnderLine.setSelected(false);
 			thumbnail.setVisible(true);
