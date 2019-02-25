@@ -296,10 +296,7 @@ public class forMenu extends JPanel implements ActionListener{
 		}
 		else if(quiz.isSelected()) {
 			quizOrNote = true;
-		}
-		
-		checkQuizorNote(quizOrNote,mode);
-		
+		}		
 		
 		if(showUnderLine.isSelected()) {
 			fa.showUnderLineBool = true;
@@ -307,5 +304,8 @@ public class forMenu extends JPanel implements ActionListener{
 		else {
 			fa.showUnderLineBool = false;
 		}
+		
+		checkQuizorNote(quizOrNote,mode);
+		fa.changeMode(this);
 	}
 }

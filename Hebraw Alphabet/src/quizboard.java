@@ -9,9 +9,6 @@ public class quizboard extends JFrame implements ActionListener, MouseListener{
 	//for preferred size
 	
 	//Swing Var Area
-
-	JLabel hebrew, hebName, hebPronounce, hebNum;//for Hebrew Alphabet
-	JButton Next;//for next button
 	
 	
 	//Number Area
@@ -41,10 +38,6 @@ public class quizboard extends JFrame implements ActionListener, MouseListener{
 		//단어장 표시부분을 위해서
 		fa.setLocation(190,5);
 		add(fa);
-		
-		//히브리어 '알파벳' 위한 공간
-		hebrew = new JLabel("א");
-		add(hebrew);
 		
 		
 		
