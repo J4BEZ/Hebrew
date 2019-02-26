@@ -50,12 +50,13 @@ public class forAlphabet extends JPanel implements ActionListener{
 		menuIntro.setBounds(120,60,390,60);
 		add(menuIntro);
 		
-		//개꿀팁! JLabel 줄 바꿈은 HTML로 가능하다.
-		Biblekor = new JLabel("<html><center>여호와 그가 네 앞서 행하시며 너와 함께하사 <br>너를 떠나지 아니하시며 버리지 아니하시리니<br> 너는 두려워 말라 놀라지 말라<br><br>(신명기 8: 31)</center></html>");
+		//개꿀팁! JLabel 줄 바꿈은 HTML로 가능
+		Biblekor = new JLabel("<html><center>내가 여호와께 구하매 내게 응답하시고<br><br>내 모든 두려움에서 나를 건지셨도다<br><br><font color=#00B992>(시편 34: 4)</font></center></html>");
 		Biblekor.setFont(fm.defaultFontBig);
 		Biblekor.setHorizontalAlignment(SwingConstants.CENTER);
+		Biblekor.setVerticalAlignment(SwingConstants.CENTER);
 		Biblekor.setForeground(fm.defaultDark);
-		Biblekor.setBounds(10,160,370,130);
+		Biblekor.setBounds(10,120,370,200);
 		add(Biblekor);
 		
 		

@@ -269,22 +269,31 @@ public class forMenu extends JPanel implements ActionListener{
 		
 		//메뉴 선택바
 		if(menuList.getSelectedItem().equals("모드를 선택해주세요")) {
-			mode = menuMode.modeSelect;
+			if(mode != menuMode.modeSelect) {
+				fa.Biblekor.setText("<html><center>"+/*SamepleString*/"<br><br>"+"</center></html>");
+				mode = menuMode.modeSelect;
+			}
 			wordNote.setSelected(true);
 			showUnderLine.setSelected(false);
 			thumbnail.setVisible(true);
 		}
 		else if(menuList.getSelectedItem().equals("자음")) {
-			mode = menuMode.consonant;
+			if(mode != menuMode.consonant) {
+				mode = menuMode.consonant;
+			}
 			thumbnail.setVisible(false);
 		}
 		else if(menuList.getSelectedItem().equals("모음")) {
-			mode = menuMode.vowel;
+			if(mode != menuMode.vowel) {
+				mode = menuMode.vowel;
+			}
 			thumbnail.setVisible(false);
 		}
 		else if(menuList.getSelectedItem().equals("프로그램 정보")) {
-			mode = menuMode.programINF;
-			wordNote.setSelected(true);
+			if(mode != menuMode.programINF) {
+				mode = menuMode.programINF;
+				wordNote.setSelected(true);
+			}
 			showUnderLine.setSelected(false);
 			thumbnail.setVisible(true);
 		}
