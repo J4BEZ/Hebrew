@@ -9,7 +9,7 @@ enum menuMode{
 
 public class forMenu extends JPanel implements ActionListener{
 	//스윙 컴포넌트들
-	JLabel type, thumbnail;
+	JLabel type, thumbnail; 
 	
 	JComboBox menuList;
 	JButton nextQuiz, submit, nextWord, prevWord;

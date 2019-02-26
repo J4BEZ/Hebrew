@@ -11,7 +11,7 @@ public class quizboard extends JFrame implements ActionListener, MouseListener{
 	//Swing Var Area
 	
 	
-	//Number Area
+	//Number Area 
 	
 	
 	//기본타입을 위한 공간

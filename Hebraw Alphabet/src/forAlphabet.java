@@ -49,7 +49,7 @@ public class forAlphabet extends JPanel implements ActionListener{
 		menuIntro.setForeground(fm.defaultColor);
 		menuIntro.setBounds(120,60,390,60);
 		add(menuIntro);
-		
+		 
 		//개꿀팁! JLabel 줄 바꿈은 HTML로 가능
 		Biblekor = new JLabel("<html><center>내가 여호와께 구하매 내게 응답하시고<br><br>내 모든 두려움에서 나를 건지셨도다<br><br><font color=#00B992>(시편 34: 4)</font></center></html>");
 		Biblekor.setFont(fm.defaultFontBig);
