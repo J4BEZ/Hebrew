@@ -7,7 +7,7 @@ class bibleList{
 	}
 }
 
-public class Bible { 
+public class Bible {
 	
 	String Bible[] = {"여호와 그가 네 앞서 행하시며 너와 함께하사 <br>너를 떠나지 아니하시며 버리지 아니하시리니<br> 너는 두려워 말라 놀라지 말라",
 					  "하나님이 이르시되 <br>그가나를 사랑한즉 내가 그를 건지리라<br>그가 내 이름을 안즉 내가 그를 높이리라<br>그가 내게 간구하리니 내가 그에게 응답하리라",

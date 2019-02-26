@@ -59,7 +59,7 @@ public class forAlphabet extends JPanel implements ActionListener{
 		Biblekor.setBounds(10,120,370,200);
 		add(Biblekor);
 		
-		
+	
 	}
 	
 	public void forWordMode() {
