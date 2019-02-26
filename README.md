@@ -1,4 +1,4 @@
-# Hebraw
-study hebraw
+# Hebrew
+study hebrew
 
 
