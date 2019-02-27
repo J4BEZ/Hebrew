@@ -24,6 +24,10 @@ public class forMenu extends JPanel implements ActionListener{
 	ButtonGroup bGroup;
 	
 	//기본타입 변수들
+	int[] randAryforMenu;//메인메뉴 말씀묵상 랜덤 배열
+	int indexforRAMenu =0;//메인 메뉴 말씀 묵상 랜덤 배열의 인덱스
+	
+	
 	String[] menubar = {"모드를 선택해주세요","자음","모음","프로그램 정보"};
 	String wrongList = "";
 	
@@ -37,7 +41,7 @@ public class forMenu extends JPanel implements ActionListener{
 	boolean quizOrNote;
 	
 	//클래스 저장
-	quizboard B; forAlphabet fa;
+	quizboard B; forAlphabet fa; Bible b;
 	
 	//이넘
 	menuMode mode;
@@ -49,9 +53,18 @@ public class forMenu extends JPanel implements ActionListener{
 	forMenu(JFrame quizBoard,JPanel forAlphabet){
 		this.B = (quizboard)quizBoard;
 		this.fa = (forAlphabet)forAlphabet;
-		fa.fm = this;//동기화 
+		fa.fm = this;//동기화
+		b = new Bible();
 		
-		mode = menuMode.modeSelect;
+		mode = menuMode.modeSelect;//기본 모드를 메뉴선택 모드로 변경합니다.
+		randAryforMenu = randomnumberGen(b.bibleList.size());//중복 방지 랜덤 묵상 배열을 생성합니다.
+		////////////////////forAlphabet의 메인메뉴 초기화/////////////////////////////////////////////
+		int initMenu = randAryforMenu[indexforRAMenu++];
+		fa.Biblekor.setText("<html><center>"+b.bibleList.get(initMenu).bible
+						+"<br><br><font color =#00B992>"+b.bibleList.get(initMenu).ChapterNVerse
+						+"</font></center></html>");
+		////////////////////////////////////////////////////////////////////////////////////////
+		
 		setLayout(null);
 		setSize(180,355);
 		this.setBorder(BorderFactory.createEtchedBorder());
@@ -202,7 +215,6 @@ public class forMenu extends JPanel implements ActionListener{
 	}
 	
 	public void checkQuizorNote(boolean quizOrNote, menuMode m) {
-		
 		switch(m) {
 		
 		case modeSelect:
@@ -262,15 +274,44 @@ public class forMenu extends JPanel implements ActionListener{
 		}
 		
 	}
+	
+	//중복없는 랜덤 넘버 배열 생성기
+	public int[] randomnumberGen(int r) {
+		int randAry[] = new int[r];
+		
+		for(int i = 0; i<randAry.length-1; i++) {
+			randAry[i] = (int)(Math.random()*r);
+			
+			for(int j =0; j<i; j++) {
+				
+				if(randAry[j]==randAry[i]) {
+					i--;
+				}
+			}
+		}
+		return randAry;
+	}
+	
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		
-		
 		//메뉴 선택바
 		if(menuList.getSelectedItem().equals("모드를 선택해주세요")) {
+			int randomIndex = 0;
 			if(mode != menuMode.modeSelect) {
-				fa.Biblekor.setText("<html><center>"+/*SamepleString*/"<br><br>"+"</center></html>");
+				if(indexforRAMenu>randAryforMenu.length-1) {//만약 메뉴랜덤인덱스의 값이 메뉴랜덤배열의길이보다 커진다면?
+					System.out.println("말씀묵상의 랜덤값이 갱신됩니다.");//메시지 출력하고
+					randAryforMenu = randomnumberGen(b.bibleList.size());//중복방지 랜덤배열 제네레이터를 이용하여 묵상배열리스트의 크기만큼 랜덤넘버배열을 생성합니다.
+					indexforRAMenu = 0;//메뉴랜덤인덱스의 값은 다시 0으로 초기화하고
+					randomIndex = randAryforMenu[indexforRAMenu];//랜덤인덱스의 값을 초기값으로 반환해줘요
+				}
+				else {
+					randomIndex = randAryforMenu[indexforRAMenu++];//아니면 그냥 메뉴렌덤인덱스+1한 랜덤배열의 값을 부여해주면 되구요
+				}
+				
+				fa.Biblekor.setText("<html><center>"+b.bibleList.get(randomIndex).bible
+						+"<br><br><font color =#00B992>"+b.bibleList.get(randomIndex).ChapterNVerse
+						+"</font></center></html>");
 				mode = menuMode.modeSelect;
 			}
 			wordNote.setSelected(true);

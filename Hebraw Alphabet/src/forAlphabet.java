@@ -14,7 +14,7 @@ public class forAlphabet extends JPanel implements ActionListener{
 	
 	JTextArea hebDiscription;
 	JScrollPane spForheb;
-	
+		
 	//폰트 및 색깔
 	Color forUnderLine = Color.decode("#A4AAA7");
 	
@@ -49,9 +49,13 @@ public class forAlphabet extends JPanel implements ActionListener{
 		menuIntro.setForeground(fm.defaultColor);
 		menuIntro.setBounds(120,60,390,60);
 		add(menuIntro);
-		 
-		//개꿀팁! JLabel 줄 바꿈은 HTML로 가능
-		Biblekor = new JLabel("<html><center>내가 여호와께 구하매 내게 응답하시고<br><br>내 모든 두려움에서 나를 건지셨도다<br><br><font color=#00B992>(시편 34: 4)</font></center></html>");
+		
+
+		
+			//개꿀팁! JLabel 줄 바꿈은 HTML로 가능
+	/*	Biblekor = new JLabel("<html><center>나를 사랑하는 자들이 나의 사랑을 입으며<br><br>나를 간절히 찾는자가 나를 만날 것이니라"
+				+"<br><br><font color=#00B992>(잠언 8: 17)</font></center></html>");*/
+		Biblekor = new JLabel();
 		Biblekor.setFont(fm.defaultFontBig);
 		Biblekor.setHorizontalAlignment(SwingConstants.CENTER);
 		Biblekor.setVerticalAlignment(SwingConstants.CENTER);
@@ -78,6 +82,7 @@ public class forAlphabet extends JPanel implements ActionListener{
 	hebName0.setBounds(280,155,100,50);
 	hebName0.setHorizontalAlignment(SwingConstants.RIGHT);
 	add(hebName0);
+	
 	//네모 경계선
 	BorderforAlpha = new JLabel();
 	BorderforAlpha.setBounds(205,5,180,200);
