@@ -2,6 +2,11 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+
 //히브리어 부터 해보자
 public class forAlphabet extends JPanel implements ActionListener{
 	
@@ -14,6 +19,8 @@ public class forAlphabet extends JPanel implements ActionListener{
 	
 	JTextArea hebDiscription;
 	JScrollPane spForheb;
+	
+	BufferedImage logo = null;
 		
 	//폰트 및 색깔
 	Color forUnderLine = Color.decode("#A4AAA7");
@@ -37,6 +44,7 @@ public class forAlphabet extends JPanel implements ActionListener{
 		
 		forMainMenu();
 		forWordMode();
+		programInform();
 		
 		this.requestFocus();
 		setFocusable(true);
@@ -52,9 +60,7 @@ public class forAlphabet extends JPanel implements ActionListener{
 		
 
 		
-			//개꿀팁! JLabel 줄 바꿈은 HTML로 가능
-	/*	Biblekor = new JLabel("<html><center>나를 사랑하는 자들이 나의 사랑을 입으며<br><br>나를 간절히 찾는자가 나를 만날 것이니라"
-				+"<br><br><font color=#00B992>(잠언 8: 17)</font></center></html>");*/
+		//개꿀팁! JLabel 줄 바꿈은 HTML로 가능
 		Biblekor = new JLabel();
 		Biblekor.setFont(fm.defaultFontBig);
 		Biblekor.setHorizontalAlignment(SwingConstants.CENTER);
@@ -154,6 +160,16 @@ public class forAlphabet extends JPanel implements ActionListener{
 	hebVol.setVisible(false);
 	spForheb.setVisible(false);
 	////////////////////////////////////////////////////////////
+	}
+	
+	public void programInform() {
+		try {
+			logo = ImageIO.read(new File("logo.png"));
+		}catch(IOException e) {
+			System.out.println("오류:: 로고이미지가 분실되었습니다.");
+		}
+		
+		
 	}
 	
 	
@@ -260,7 +276,8 @@ public class forAlphabet extends JPanel implements ActionListener{
 				}
 				break;
 			case programINF:
-				this.setSize(390,355);
+				this.setSize(160,200);
+				g2d.drawImage(logo, 5, 5, 155, 155, 0, 0, 150, 150, this);
 				break;
 			default:
 				break;

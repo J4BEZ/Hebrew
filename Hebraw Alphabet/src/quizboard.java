@@ -40,7 +40,6 @@ public class quizboard extends JFrame implements ActionListener, MouseListener{
 		add(fa);
 		
 		
-		
 		addMouseListener(this);
 		this.requestFocus();
 		setFocusable(true);

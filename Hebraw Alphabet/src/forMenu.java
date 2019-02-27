@@ -119,8 +119,6 @@ public class forMenu extends JPanel implements ActionListener{
 	
 	//단어장 모드
 	public void forNote() {
-		//TODO 이전단어 다음단어 버튼만 만들면 될듯?
-		//TODO 그 담에 모드에따라 보일지 안보일지 설정
 		showUnderLine = new JCheckBox("밑줄 보이기");
 		showUnderLine.setFont(defaultFontNor);
 		showUnderLine.setBounds(5,220,100,40);
@@ -339,6 +337,9 @@ public class forMenu extends JPanel implements ActionListener{
 			thumbnail.setVisible(true);
 		}
 		//메뉴 동기화
+		
+		//TODO 자 이제 드디어 히브리어 '단어장'을 만들 차례 밥먹고와서 하자 배고프당
+		//아니다 프로그램 정보 부터 만들까
 		
 		//퀴즈 or 단어장
 		if(wordNote.isSelected()) {
