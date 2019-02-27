@@ -17,7 +17,8 @@ public class forMenu extends JPanel implements ActionListener{
 	
 	JCheckBox showUnderLine;
 	
-	JTextArea incTitle, incorrectList;
+	JTextArea incTitle;
+	JTextPane incorrectList;
 	JTextField submitArea;
 	JScrollPane spForIL;
 	
@@ -158,7 +159,8 @@ public class forMenu extends JPanel implements ActionListener{
 		add(incTitle);
 		
 		//오답노트 리스트
-		incorrectList = new JTextArea(wrongList);
+		incorrectList = new JTextPane();
+		incorrectList.setText(wrongList);
 		incorrectList.setBackground(Color.WHITE);
 		incorrectList.setDisabledTextColor(new Color(40,40,40));
 		incorrectList.setDragEnabled(true);
@@ -214,7 +216,6 @@ public class forMenu extends JPanel implements ActionListener{
 	
 	public void checkQuizorNote(boolean quizOrNote, menuMode m) {
 		switch(m) {
-		
 		case modeSelect:
 		case programINF:
 			wordNote.setVisible(false);
@@ -268,7 +269,6 @@ public class forMenu extends JPanel implements ActionListener{
 			
 		default:
 			break;
-		
 		}
 		
 	}

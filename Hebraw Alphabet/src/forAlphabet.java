@@ -15,10 +15,14 @@ public class forAlphabet extends JPanel implements ActionListener{
 	
 	JLabel hebAlpha, hebName0, hebName, hebNum, hebProEng, hebProKor, hebVol, hebMean;
 	JLabel BorderforAlpha;
+	
+	JLabel nickname;
+
 	JCheckBox showLine;
 	
-	JTextArea hebDiscription;
-	JScrollPane spForheb;
+	JTextPane hebDiscription, progDiscription;
+	JScrollPane spForheb, spForprog;
+	
 	
 	BufferedImage logo = null;
 		
@@ -30,6 +34,7 @@ public class forAlphabet extends JPanel implements ActionListener{
 	
 	//기타 배열 등
 	boolean showUnderLineBool = false;
+	String programInform;
 	
 	//클래스 저장
 	quizboard B;
@@ -136,7 +141,8 @@ public class forAlphabet extends JPanel implements ActionListener{
 	
 	/////////////////////////////////////////////////////////////
 	//알파벳 관련 정보를 저장해두는 텍스트 영역(?_?)
-	hebDiscription = new JTextArea("테스트\n\n\n\n\n\n\n");
+	hebDiscription = new JTextPane();//TODO
+	hebDiscription.setText("테스트\n\n\n\n\n\n\n");
 	hebDiscription.setFont(fm.defaultFontNor);
 	hebDiscription.setBackground(Color.WHITE);
 	hebDiscription.setDisabledTextColor(new Color(40,40,40));
@@ -168,8 +174,33 @@ public class forAlphabet extends JPanel implements ActionListener{
 		}catch(IOException e) {
 			System.out.println("오류:: 로고이미지가 분실되었습니다.");
 		}
+		//닉네임 레이블
+		nickname = new JLabel("J4BEZ");
+		nickname.setFont(fm.defaultFontLar);
+		nickname.setForeground(fm.defaultColor);
+		nickname.setBounds(80,155,100,50);
+		add(nickname);
 		
+		//프로그램 정보
+		//TODO 여기 부분 JTextPane이용해서 글자체 변경 등 넣기
+		programInform = "<프로그램 정보>\n네 재물과 네 소산물의 처음 익은 열매로 여호와를 공경하라(잠언 3:9)"
+				+ "\n자바를 공부하고나서\n가장 처음으로 다듬어보는 프로그램을\n하나님께 드립니다"
+				+ "\n신학을 공부하시는 학우분들이나\n히브리어 공부를 하시는 분들께\n조금이라도 도움이 되길 바래요:D";
+		progDiscription = new JTextPane();
+		progDiscription.setText(programInform);
+		progDiscription.setFont(fm.defaultFontNor);
+		progDiscription.setBackground(new Color(40,40,40));
+		progDiscription.setForeground(fm.defaultColor);
+		progDiscription.setDragEnabled(true);
+		progDiscription.setEditable(false);
 		
+		spForprog = new JScrollPane(progDiscription,JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
+				JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+		B.getContentPane().add(spForprog);
+		spForprog.setBounds(360,8,220,352);
+		
+		nickname.setVisible(false);
+		spForprog.setVisible(false);
 	}
 	
 	
@@ -195,6 +226,11 @@ public class forAlphabet extends JPanel implements ActionListener{
 				hebVol.setVisible(false);
 				spForheb.setVisible(false);
 				////////////////////
+				
+				///////프로그램 정보관련/////////////
+				nickname.setVisible(false);
+				spForprog.setVisible(false);
+				///////////////////////////////
 			break;
 			
 			case consonant:
@@ -203,6 +239,10 @@ public class forAlphabet extends JPanel implements ActionListener{
 				menuIntro.setVisible(false);
 				Biblekor.setVisible(false);
 				/////////////////////////////
+				///////프로그램 정보관련/////////////
+				nickname.setVisible(false);
+				spForprog.setVisible(false);
+				///////////////////////////////
 				if(fm.quizOrNote) {
 					hebAlpha.setVisible(false);
 					hebName0.setVisible(false);
@@ -247,6 +287,10 @@ public class forAlphabet extends JPanel implements ActionListener{
 			hebVol.setVisible(false);
 			spForheb.setVisible(false);
 			////////////////////
+			///////프로그램 정보관련/////////////
+			nickname.setVisible(true);
+			spForprog.setVisible(true);
+			///////////////////////////////
 			break;
 			
 			
@@ -277,6 +321,10 @@ public class forAlphabet extends JPanel implements ActionListener{
 				break;
 			case programINF:
 				this.setSize(160,200);
+				g2d.setColor(forUnderLine);
+				g2d.setStroke(new BasicStroke(3));
+				g2d.setColor(Color.white);
+				g2d.fillRect(0, 0, 160, 200);
 				g2d.drawImage(logo, 5, 5, 155, 155, 0, 0, 150, 150, this);
 				break;
 			default:
