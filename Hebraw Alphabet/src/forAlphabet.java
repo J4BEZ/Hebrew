@@ -130,7 +130,7 @@ public class forAlphabet extends JPanel implements ActionListener{
 	hebMean.setFont(fm.defaultFontBig);
 	hebMean.setForeground(fm.defaultDark);
 	hebMean.setBounds(10,130,180,30);
-	add(hebMean);
+	add(hebMean); 
 	
 	//히브리어 수량
 	hebVol = new JLabel("수량: 1");
@@ -180,7 +180,7 @@ public class forAlphabet extends JPanel implements ActionListener{
 		nickname.setForeground(fm.defaultColor);
 		nickname.setBounds(80,155,100,50);
 		add(nickname);
-		
+		 
 		//프로그램 정보
 		//TODO 여기 부분 JTextPane이용해서 글자체 변경 등 넣기
 		programInform = "<프로그램 정보>\n네 재물과 네 소산물의 처음 익은 열매로 여호와를 공경하라(잠언 3:9)"

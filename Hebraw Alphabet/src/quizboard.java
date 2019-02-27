@@ -21,7 +21,7 @@ public class quizboard extends JFrame implements ActionListener, MouseListener{
 	forAlphabet fa = new forAlphabet(this,fm);
 	
 	
-	quizboard(){
+	quizboard(){ 
 		fm = new forMenu(this,fa);
 		//init setting
 		setSize(600,400);
