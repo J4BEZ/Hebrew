@@ -113,12 +113,12 @@ public class forAlphabet extends JPanel implements ActionListener{
 	hebName.setBounds(65,20,200,30);
 	add(hebName);
 	//히브리어 발음
-	hebProEng = new JLabel("소리값 표기: (묵음)");
+	hebProEng = new JLabel("<html>소리값 표기: <span color =#EB6464>(묵음)</span></html>");
 	hebProEng.setFont(fm.defaultFontBig);
 	hebProEng.setForeground(fm.defaultDark);
 	hebProEng.setBounds(10,65,180,30);
 	add(hebProEng);
-	
+	//TODO 잘하면 JLabel 갯수 확 줄일 수 도 있겠네 내일 계속 진행해보자
 	hebProKor = new JLabel("한글 소리값: 초성의 'ㅇ'");
 	hebProKor.setFont(fm.defaultFontBig);
 	hebProKor.setForeground(fm.defaultDark);
