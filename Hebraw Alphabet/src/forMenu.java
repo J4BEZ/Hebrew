@@ -155,7 +155,7 @@ public class forMenu extends JPanel implements ActionListener{
 		incTitle.setDisabledTextColor(defaultColor);
 		incTitle.setBackground(new Color(40,40,40));
 		incTitle.setEnabled(false);
-		incTitle.setBounds(5,80,1,15);
+		incTitle.setBounds(5,80,169,15);
 		add(incTitle);
 		
 		//오답노트 리스트
