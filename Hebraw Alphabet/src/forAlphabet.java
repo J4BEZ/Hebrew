@@ -20,7 +20,8 @@ public class forAlphabet extends JPanel implements ActionListener{
 
 	JCheckBox showLine;
 	
-	JTextPane hebDiscription, progDiscription;
+	JTextPane hebDiscription; 
+	JEditorPane progDiscription;
 	JScrollPane spForheb, spForprog;
 	
 	
@@ -183,13 +184,22 @@ public class forAlphabet extends JPanel implements ActionListener{
 		 
 		//프로그램 정보
 		//TODO 여기 부분 JTextPane이용해서 글자체 변경 등 넣기
-		programInform = "<프로그램 정보>\n네 재물과 네 소산물의 처음 익은 열매로 여호와를 공경하라(잠언 3:9)"
+		programInform = "<프로그램 정보>\n- 현재 버전: v. 1.0.0\n네 재물과 네 소산물의 처음 익은 열매로 여호와를 공경하라(잠언 3:9)"
 				+ "\n자바를 공부하고나서\n가장 처음으로 다듬어보는 프로그램을\n하나님께 드립니다"
 				+ "\n신학을 공부하시는 학우분들이나\n히브리어 공부를 하시는 분들께\n조금이라도 도움이 되길 바래요:D";
-		progDiscription = new JTextPane();
-		progDiscription.setText(programInform);
+		progDiscription = new JEditorPane();
+		java.net.URL programInf = forAlphabet.class.getResource("programInform.html");
+		if(programInf !=null) {
+			try {
+				progDiscription.setPage(programInf);
+			}catch(IOException e) {
+				System.out.println("URL이 잘못됐어요");
+			}
+		}else {
+			System.out.println("파일이 없어요");
+		}
 		progDiscription.setFont(fm.defaultFontNor);
-		progDiscription.setBackground(new Color(40,40,40));
+		progDiscription.setBackground(Color.decode("#F8F8FF"));
 		progDiscription.setForeground(fm.defaultColor);
 		progDiscription.setDragEnabled(true);
 		progDiscription.setEditable(false);

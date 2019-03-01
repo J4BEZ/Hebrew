@@ -1,10 +1,10 @@
+=\=\=\=\=\=\=
+<<<<<<<=HEAD
+>>>>>>>=refs/remotes/origin/master
 eclipse.preferences.version=1
-encoding//src/quizboard.java=UTF-8
-encoding//src/forMenu.java=UTF-8
-encoding//src/forAlphabet.java=UTF-8
+encoding//src/Bible.java=UTF-8
 encoding//src/MainFrame.java=UTF-8
-<<<<<<< HEAD
-encoding//src/Bible.java=UTF-8
-=======
-encoding//src/Bible.java=UTF-8
->>>>>>> refs/remotes/origin/master
+encoding//src/forAlphabet.java=UTF-8
+encoding//src/forMenu.java=UTF-8
+encoding//src/quizboard.java=UTF-8
+encoding//src/programInform.html=UTF-8
