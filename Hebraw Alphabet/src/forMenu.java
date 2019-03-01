@@ -120,7 +120,7 @@ public class forMenu extends JPanel implements ActionListener{
 	
 	//단어장 모드 
 	public void forNote() {
-		showUnderLine = new JCheckBox("밑줄 보이기");
+		showUnderLine = new JCheckBox("안내선");
 		showUnderLine.setFont(defaultFontNor);
 		showUnderLine.setBounds(5,220,100,40);
 		showUnderLine.addActionListener(this);
