@@ -12,8 +12,7 @@ public class forAlphabet extends JPanel implements ActionListener{
 	
 	//스윙 컴포넌트들
 	JLabel menuIntro, Biblekor;
-	
-	JLabel hebAlpha, hebName0, hebName, hebNum, hebProEng, hebProKor, hebVol, hebMean;
+	JLabel hebAlpha, hebName0, forhebInf;//JLabel에 html태그가 적용된다는 사실을 깨달은 이후 설명부분은 하나의 JLabel로 쇼부봄
 	JLabel BorderforAlpha;
 	
 	JLabel nickname;
@@ -35,6 +34,8 @@ public class forAlphabet extends JPanel implements ActionListener{
 	
 	//기타 배열 등
 	boolean showUnderLineBool = false;
+	
+	//String 과 같은 기본타입 변수들
 	
 	//클래스 저장
 	quizboard B;
@@ -62,8 +63,6 @@ public class forAlphabet extends JPanel implements ActionListener{
 		menuIntro.setForeground(fm.defaultColor);
 		menuIntro.setBounds(120,60,390,60);
 		add(menuIntro);
-		
-
 		
 		//개꿀팁! JLabel 줄 바꿈은 HTML로 가능
 		Biblekor = new JLabel();
@@ -101,43 +100,23 @@ public class forAlphabet extends JPanel implements ActionListener{
 	add(BorderforAlpha);
 	////////////////////
 	//히브리어 index
-	hebNum = new JLabel("1.");
-	hebNum.setFont(fm.defaultFontLar);
-	hebNum.setForeground(fm.defaultDark);
-	hebNum.setBounds(5,15,60,40);
-	add(hebNum);
-	//히브리어 이름
-	hebName = new JLabel("알레프(\"\'Alef\")");
-	hebName.setFont(fm.defaultFontBig);
-	hebName.setForeground(fm.defaultColor);
-	hebName.setBounds(65,20,200,30);
-	add(hebName);
-	//히브리어 발음
-	hebProEng = new JLabel("<html>소리값 표기: <span color =#EB6464>(묵음)</span></html>");
-	hebProEng.setFont(fm.defaultFontBig);
-	hebProEng.setForeground(fm.defaultDark);
-	hebProEng.setBounds(10,65,180,30);
-	add(hebProEng);
-	//TODO 잘하면 JLabel 갯수 확 줄일 수 도 있겠네 내일 계속 진행해보자
-	hebProKor = new JLabel("한글 소리값: 초성의 'ㅇ'");
-	hebProKor.setFont(fm.defaultFontBig);
-	hebProKor.setForeground(fm.defaultDark);
-	hebProKor.setBounds(10,95,180,30);
-	add(hebProKor);
 	
-	//알파벳의 뜻
-	hebMean = new JLabel("뜻: 황소");
-	hebMean.setFont(fm.defaultFontBig);
-	hebMean.setForeground(fm.defaultDark);
-	hebMean.setBounds(10,130,180,30);
-	add(hebMean); 
+	forhebInf = new JLabel();
+	forhebInf.setFont(fm.defaultFontBig);
+	forhebInf.setForeground(fm.defaultDark);
+	forhebInf.setHorizontalAlignment(SwingConstants.LEFT);
+	forhebInf.setVerticalAlignment(SwingConstants.TOP);
+	forhebInf.setBounds(5,15,190,185);
+	forhebInf.setText("<html><font size=+2>1. </font>"
+					+ "<font color="+fm.colorInit+">알레프 (Alef)</font><br>"
+					+ "<font size = 1><br></font>"//줄간격을 띄어줘요!
+					+ "발음 기호: "+"<span color=#F35A62 face=Serif>  ʔ  </span><font color=#F35A62 size =4>[성문파열음](묵음)</font>"+"<br>"
+					+ "한글 소리값:  <span color =#0894A1>ㅇ</span><br>"
+					+ "<font size = 1><br></font>"//줄간격을 띄어줘요!
+					+ "뜻:  <span color =#F2B134>황소</span><br>"
+					+ "숫자값:  <span color=#112F41>1</span></html>");
+	add(forhebInf);
 	
-	//히브리어 수량
-	hebVol = new JLabel("수량: 1");
-	hebVol.setFont(fm.defaultFontBig);
-	hebVol.setForeground(fm.defaultDark);
-	hebVol.setBounds(10,165,180,30);
-	add(hebVol);
 	
 	/////////////////////////////////////////////////////////////
 	//알파벳 관련 정보를 저장해두는 텍스트 영역(?_?)
@@ -158,12 +137,7 @@ public class forAlphabet extends JPanel implements ActionListener{
 	hebAlpha.setVisible(false);
 	hebName0.setVisible(false);
 	BorderforAlpha.setVisible(false);
-	hebNum.setVisible(false);
-	hebName.setVisible(false);
-	hebProEng.setVisible(false);
-	hebProKor.setVisible(false);
-	hebMean.setVisible(false);
-	hebVol.setVisible(false);
+	forhebInf.setVisible(false);
 	spForheb.setVisible(false);
 	////////////////////////////////////////////////////////////
 	}
@@ -224,12 +198,7 @@ public class forAlphabet extends JPanel implements ActionListener{
 				hebAlpha.setVisible(false);
 				hebName0.setVisible(false);
 				BorderforAlpha.setVisible(false);
-				hebNum.setVisible(false);
-				hebName.setVisible(false);
-				hebProEng.setVisible(false);
-				hebProKor.setVisible(false);
-				hebMean.setVisible(false);
-				hebVol.setVisible(false);
+				forhebInf.setVisible(false);
 				spForheb.setVisible(false);
 				////////////////////
 				
@@ -253,24 +222,14 @@ public class forAlphabet extends JPanel implements ActionListener{
 					hebAlpha.setVisible(false);
 					hebName0.setVisible(false);
 					BorderforAlpha.setVisible(false);
-					hebNum.setVisible(false);
-					hebName.setVisible(false);
-					hebProEng.setVisible(false);
-					hebProKor.setVisible(false);
-					hebMean.setVisible(false);
-					hebVol.setVisible(false);
+					forhebInf.setVisible(false);
 					spForheb.setVisible(false);
 				}
 				else {
 				hebAlpha.setVisible(true);
 				hebName0.setVisible(true);
 				BorderforAlpha.setVisible(true);
-				hebNum.setVisible(true);
-				hebName.setVisible(true);
-				hebProEng.setVisible(true);
-				hebProKor.setVisible(true);
-				hebMean.setVisible(true);
-				hebVol.setVisible(true);
+				forhebInf.setVisible(true);
 				spForheb.setVisible(true);
 					
 				}
@@ -285,12 +244,7 @@ public class forAlphabet extends JPanel implements ActionListener{
 			hebAlpha.setVisible(false);
 			hebName0.setVisible(false);
 			BorderforAlpha.setVisible(false);
-			hebNum.setVisible(false);
-			hebName.setVisible(false);
-			hebProEng.setVisible(false);
-			hebProKor.setVisible(false);
-			hebMean.setVisible(false);
-			hebVol.setVisible(false);
+			forhebInf.setVisible(false);
 			spForheb.setVisible(false);
 			////////////////////
 			///////프로그램 정보관련/////////////

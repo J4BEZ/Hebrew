@@ -31,8 +31,9 @@ public class forMenu extends JPanel implements ActionListener{
 	
 	String[] menubar = {"모드를 선택해주세요","자음","모음","프로그램 정보"};
 	String wrongList = "";
+	String colorInit = "#00B992";
 	
-	Color defaultColor = Color.decode("#00B992");
+	Color defaultColor = Color.decode(colorInit);
 	Color defaultDark = new Color(40,40,40);
 	Font defaultFontLar = new Font("나눔바른펜",Font.BOLD,30);
 	Font defaultFontBig = new Font("나눔바른펜",Font.BOLD,20);
@@ -62,7 +63,7 @@ public class forMenu extends JPanel implements ActionListener{
 		////////////////////forAlphabet의 메인메뉴 초기화/////////////////////////////////////////////
 		int initMenu = randAryforMenu[indexforRAMenu++];
 		fa.Biblekor.setText("<html><center>"+b.bibleList.get(initMenu).bible
-						+"<br><br><font color =#00B992>"+b.bibleList.get(initMenu).ChapterNVerse
+						+"<br><br><font color ="+colorInit+">"+b.bibleList.get(initMenu).ChapterNVerse
 						+"</font></center></html>");
 		////////////////////////////////////////////////////////////////////////////////////////
 		
