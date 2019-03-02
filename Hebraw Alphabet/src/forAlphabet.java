@@ -72,8 +72,6 @@ public class forAlphabet extends JPanel implements ActionListener{
 		Biblekor.setForeground(fm.defaultDark);
 		Biblekor.setBounds(10,120,370,200);
 		add(Biblekor);
-		
-	
 	}
 	
 	public void forWordMode() {
@@ -108,15 +106,15 @@ public class forAlphabet extends JPanel implements ActionListener{
 	forhebInf.setVerticalAlignment(SwingConstants.TOP);
 	forhebInf.setBounds(5,15,190,185);
 	forhebInf.setText("<html><font size=+2>1. </font>"
-					+ "<font color="+fm.colorInit+">알레프 (Alef)</font><br>"
+					+ "<span color="+fm.colorInit+">   알레프 (Alef)</span><br>"
 					+ "<font size = 1><br></font>"//줄간격을 띄어줘요!
-					+ "발음 기호: "+"<span color=#F35A62 face=Serif>  ʔ  </span><font color=#F35A62 size =4>[성문파열음](묵음)</font>"+"<br>"
+					+ "음역:  "
+					+"<span color=#F35A62 face=Serif>  ʔ  </span><font color=#F35A62 size =4>[성문파열음](묵음)</font>"+"<br>"
 					+ "한글 소리값:  <span color =#0894A1>ㅇ</span><br>"
 					+ "<font size = 1><br></font>"//줄간격을 띄어줘요!
 					+ "뜻:  <span color =#F2B134>황소</span><br>"
 					+ "숫자값:  <span color=#112F41>1</span></html>");
 	add(forhebInf);
-	
 	
 	/////////////////////////////////////////////////////////////
 	//알파벳 관련 정보를 저장해두는 텍스트 영역(?_?)
