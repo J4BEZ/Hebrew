@@ -12,7 +12,7 @@ public class forAlphabet extends JPanel implements ActionListener{
 	
 	//스윙 컴포넌트들
 	JLabel menuIntro, Biblekor;
-	JLabel hebAlpha, hebName0, forhebInf;//JLabel에 html태그가 적용된다는 사실을 깨달은 이후 설명부분은 하나의 JLabel로 쇼부봄
+	JLabel hebAlpha, hebName0, forhebInf;//
 	JLabel BorderforAlpha;
 	
 	JLabel nickname;
