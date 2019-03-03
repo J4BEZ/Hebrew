@@ -278,19 +278,32 @@ public class forMenu extends JPanel implements ActionListener{
 	}
 	
 	public void wordNoteLabel(String alphabet, String hebname, String index, String korName, String uniName
-			, String shape,String number) {
+			, String shape,String number, String[] range) {
 		fa.hebAlpha.setText(alphabet);
 		fa.hebName0.setText(hebname);
 		fa.forhebInf.setText("<html><font size=+2>"+index+"</font>"
 			+ "<span color="+colorInit+">   "+korName+
 			"("+uniName+")</span><br>"
 			+ "<font size = 1><br></font>"//줄간격을 띄어줘요!
-			+ "음역:  "
-			+"<span color=#F35A62 face=Serif>  ʔ  </span><font color=#F35A62 size =4>[성문파열음](묵음)</font>"+"<br>"
+			+ "음역:  "//TODO 아래range[0]을 배열을 받으면 , , 추가해서 문자열로 반환해주는걸로 바꾸기
+			+"<span color=#F35A62 face=Serif>"+range[0]+"</span><font color=#F35A62 size =4></font>"+"<br>"
 			+ "한글 소리값:  <span color =#0894A1>ㅇ</span><br>"
 			+ "<font size = 1><br></font>"//줄간격을 띄어줘요!
-			+ "모양:  <span color =#F2B134>"+shape+"</span><br>"
+			+ "형상:  <span color =#F2B134>"+shape+"</span><br>"
 			+ "숫자값:  <span color=#112F41>"+number+"</span></html>");
+	}
+	
+	public void NextPrev(int size,int max) {//이전, 다음 버튼 활성화 비활성화
+		if(size==0)
+			prevWord.setEnabled(false);
+		else
+			prevWord.setEnabled(true);
+		
+		if(size==max)
+			nextWord.setEnabled(false);
+		else
+			nextWord.setEnabled(true);
+		
 	}
 	
 	//중복없는 랜덤 넘버 배열 생성기
@@ -339,10 +352,11 @@ public class forMenu extends JPanel implements ActionListener{
 		else if(menuList.getSelectedItem().equals("자음")) {
 			if(mode != menuMode.consonant) {
 				mode = menuMode.consonant;
+				indexforWordNote = 0;
 				wordNoteLabel(hc.CS.get(indexforWordNote).alphabet,hc.CS.get(indexforWordNote).hebname,
 						hc.CS.get(indexforWordNote).index,hc.CS.get(indexforWordNote).korName,
 						hc.CS.get(indexforWordNote).uniName,hc.CS.get(indexforWordNote).shape,
-						hc.CS.get(indexforWordNote).number);
+						hc.CS.get(indexforWordNote).number,hc.CS.get(indexforWordNote).range);
 			}
 			thumbnail.setVisible(false);
 		}
@@ -362,8 +376,6 @@ public class forMenu extends JPanel implements ActionListener{
 		}
 		//메뉴 동기화
 		
-		//TODO 자 이제 드디어 히브리어 '단어장'을 만들 차례 밥먹고와서 하자 배고프당
-		//아니다 프로그램 정보 부터 만들까
 		
 		//퀴즈 or 단어장
 		if(wordNote.isSelected()) {
@@ -371,6 +383,7 @@ public class forMenu extends JPanel implements ActionListener{
 		}
 		else if(quiz.isSelected()) {
 			quizOrNote = true;
+			indexforWordNote = 0;
 		}		
 		
 		if(showUnderLine.isSelected()) { 
@@ -380,23 +393,28 @@ public class forMenu extends JPanel implements ActionListener{
 			fa.showUnderLineBool = false;
 		}
 		
-		if(this.mode == menuMode.consonant||this.mode == menuMode.vowel) {
+		if(this.mode == menuMode.consonant) {
 			if(!quizOrNote) {
 				if(e.getSource()==nextWord) {
-					indexforWordNote++;//TODO 이따 집와서 이부분 꼭 수정하자 일단 여기까지 마무리하고
+					if(indexforWordNote<hc.CS.size()-1) {
+						indexforWordNote++;
+					}
 					wordNoteLabel(hc.CS.get(indexforWordNote).alphabet,hc.CS.get(indexforWordNote).hebname,
 							hc.CS.get(indexforWordNote).index,hc.CS.get(indexforWordNote).korName,
 							hc.CS.get(indexforWordNote).uniName,hc.CS.get(indexforWordNote).shape,
-							hc.CS.get(indexforWordNote).number);
+							hc.CS.get(indexforWordNote).number,hc.CS.get(indexforWordNote).range);
 				}
 				if(e.getSource()==prevWord) {
-					indexforWordNote--;
+					if(indexforWordNote>0) {
+						indexforWordNote--;
+					}
 					wordNoteLabel(hc.CS.get(indexforWordNote).alphabet,hc.CS.get(indexforWordNote).hebname,
 							hc.CS.get(indexforWordNote).index,hc.CS.get(indexforWordNote).korName,
 							hc.CS.get(indexforWordNote).uniName,hc.CS.get(indexforWordNote).shape,
-							hc.CS.get(indexforWordNote).number);
+							hc.CS.get(indexforWordNote).number,hc.CS.get(indexforWordNote).range);
 				}
-			}
+				NextPrev(indexforWordNote,hc.CS.size()-1);
+				}
 		}
 		
 		checkQuizorNote(quizOrNote,mode);

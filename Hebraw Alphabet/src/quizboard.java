@@ -47,7 +47,6 @@ public class quizboard extends JFrame implements ActionListener, MouseListener{
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
 	}
 
 	
