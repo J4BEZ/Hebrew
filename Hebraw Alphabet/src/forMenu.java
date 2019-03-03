@@ -373,7 +373,7 @@ public class forMenu extends JPanel implements ActionListener{
 			quizOrNote = true;
 		}		
 		
-		if(showUnderLine.isSelected()) {
+		if(showUnderLine.isSelected()) { 
 			fa.showUnderLineBool = true;
 		}
 		else {
