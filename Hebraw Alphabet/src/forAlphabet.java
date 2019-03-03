@@ -105,15 +105,6 @@ public class forAlphabet extends JPanel implements ActionListener{
 	forhebInf.setHorizontalAlignment(SwingConstants.LEFT);
 	forhebInf.setVerticalAlignment(SwingConstants.TOP);
 	forhebInf.setBounds(5,15,190,185);
-	forhebInf.setText("<html><font size=+2>1. </font>"
-					+ "<span color="+fm.colorInit+">   알레프 (Alef)</span><br>"
-					+ "<font size = 1><br></font>"//줄간격을 띄어줘요!
-					+ "음역:  "
-					+"<span color=#F35A62 face=Serif>  ʔ  </span><font color=#F35A62 size =4>[성문파열음](묵음)</font>"+"<br>"
-					+ "한글 소리값:  <span color =#0894A1>ㅇ</span><br>"
-					+ "<font size = 1><br></font>"//줄간격을 띄어줘요!
-					+ "뜻:  <span color =#F2B134>황소</span><br>"
-					+ "숫자값:  <span color=#112F41>1</span></html>");
 	add(forhebInf);
 	
 	/////////////////////////////////////////////////////////////
