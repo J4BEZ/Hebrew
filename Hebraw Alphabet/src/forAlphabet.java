@@ -110,7 +110,7 @@ public class forAlphabet extends JPanel implements ActionListener{
 	/////////////////////////////////////////////////////////////
 	//알파벳 관련 정보를 저장해두는 텍스트 영역(?_?)
 	hebDiscription = new JTextPane();//TODO
-	hebDiscription.setText("테스트\n\n\n\n\n\n\n");
+	hebDiscription.setText("테스트를 위해 배열의 첫번째 항목 (rang[0])만 나오도록 했습니다\n\n\n\n\n\n\n");
 	hebDiscription.setFont(fm.defaultFontNor);
 	hebDiscription.setBackground(Color.WHITE);
 	hebDiscription.setDisabledTextColor(new Color(40,40,40));

@@ -8,7 +8,7 @@ class hcs{//히브리어 알파벳 배열
 	
 	//생성자 엄청기넹
 	hcs(String alphabet, String hebname, String index, String korName, String uniName,
-		String shape, String number, String range[]
+		String shape, String number, String range[], String KoRange[]
 			/*, java.net.URL alphabetInf*/){
 		this.alphabet = alphabet; this.hebname = hebname; this.index = index;
 		this.korName = korName; this.uniName = uniName; this.shape = shape; this.number = number;
@@ -38,13 +38,13 @@ public class hebConsonant {
 					"19.","20.","21.","21-2.","22.","22-1."};
 	
 	String []korN = {"알레프","베 트","베 트","기멜","기멜", 	"달레트","달레트","헤","바브","쟈인",
-					"헤트","테트","요드","카프","<font size=5>카프 소핏</font>",		"카프","<font size=5>카프 소핏</font>","라메드","멤","<font size=5>멤 소핏</font>",
-					"눈","<font size=5>눈 소핏</font>","싸메크","아인","페",		"페 소핏","페","페 소핏","짜디","<font size=5>짜디 소핏</font>",
+					"헤트","테트","요드","카프","카프 소핏",		"카프","카프 소핏","라메드","멤","멤 소핏",
+					"눈","눈 소핏","싸메크","아인","페",		"페 소핏","페","페 소핏","짜디","짜디 소핏",
 					"코프","레쉬","신","쉰","타브","타브"};
 	
 	String []uniN = {"Alef","Bet","Bet","Gimel","Gimel", 	"Dalet","Dalet","He","Vav","Zayin",
-					"Het","Tet","Yod","Kaf","<font size=4>Kaf Sofit</font>",	"Kaf","<font size=4>Kaf Sofit</font>","Lamed","Mem","<font size=5>Mem Sofit</font>",
-					"Nun","<font size=5>Nun Sofit</font>","Samekh","Ayin","Pe",		"Pe Sofit","Pe","Pe Sofit","Tsadi","<font size=4>Tsadi Sofit</font>",
+					"Het","Tet","Yod","Kaf","Kaf Sofit",	"Kaf","Kaf Sofit","Lamed","Mem","Mem Sofit",
+					"Nun","Nun Sofit","Samekh","Ayin","Pe",		"Pe Sofit","Pe","Pe Sofit","Tsadi","Tsadi Sofit",
 					"Qof","Resh","Sin","Shin","Tav","Tav"};
 	
 	String []shape = {"황소","집","집","낙타","낙타", 	"문","문","숨구멍","갈고리","무기",
@@ -58,19 +58,19 @@ public class hebConsonant {
 					"100","200","300","300","400","400"};
 	
 	//TODO 빈 발음 부분 마저 채우기
-	String [][]rang = {{"ɔ","(묵음)"},{"","v"},{"b"},{"","gh"},{"g"},	{"","dh"},{"d"},{"h"},{"v","w"},{"z"},
-					   {""},{""},{"y"},{"","","kh"},{"","","kh"},	{"k"},{"k"},{"l"},{"m"},{"m"},
-					   {"n"},{"n"},{"s"},{"c","(묵음)"},{"","f","ph"},	{"","f","ph"},{"p"},{"p"},{"","ts"},{"","ts"},
-					   {"q"},{"r"},{""},{""},{"","th","ʃ"},{"t"}};
+	String [][]rang = {{"ɔ","(묵음)"},{"ḇ","v"},{"b"},{"ḡ","gh"},{"g"},	{"ḏ","dh"},{"d"},{"h"},{"v","w"},{"z"},
+					   {"ḥ"},{"ṭ"},{"y"},{"ḵ","kh","ḥ"},{"ḵ","kh","ḥ"},	{"k"},{"k"},{"l"},{"m"},{"m"},
+					   {"n"},{"n"},{"s"},{"c","(묵음)"},{" p̄ ","f","ph"},	{" p̄ ","f","ph"},{"p"},{"p"},{"ṣ","ts"},{"ṣ","ts"},
+					   {"q"},{"r"},{"ś"},{"š"},{"ṯ","th","ʃ"},{"t"}};
 	
-	String [][]KoRang = {{""},{""},{""},{""},{""},	{""},{""},{""},{""},{""},
-			   			 {""},{""},{""},{""},{""},	{""},{""},{""},{""},{""},
-			   			 {""},{""},{""},{""},{""},	{""},{""},{""},{""},{""},
-			   			 {""},{""},{""},{""},{""},{""}};
+	String [][]KoRang = {{"ㅇ"},{"ㅂ"},{"ㅂ"},{"ㄱ"},{"ㄱ"},	{"ㄷ"},{"ㄷ"},{"ㅎ"},{"ㅂ","ㅇ","ㅸ"},{"ㅈ","ㅿ"},
+			   			 {"ㅎ","ㆅ"},{"ㅌ"},{"이"},{"ㅋ"},{"ㅋ"},	{"ㅋ"},{"ㅋ"},{"ㄹ"},{"ㅁ"},{"ㅁ"},
+			   			 {"ㄴ"},{"ㄴ"},{"ㅆ"},{"ㅇ","ㆆ"},{"ㅍ"},	{"ㅍ"},{"ㅍ"},{"ㅍ"},{"ㅉ"},{"ㅉ"},
+			   			 {"ㅋ"},{"ㄹ"},{"ㅅ"},{"ㅅ"},{"ㅌ"},{"ㅌ"}};
 	
 	hebConsonant(){
 		for(int i=0; i<alph.length; i++) {
-			CS.add(new hcs(alph[i],hbname[i],idx[i],korN[i],uniN[i],shape[i],num[i],rang[i]));
+			CS.add(new hcs(alph[i],hbname[i],idx[i],korN[i],uniN[i],shape[i],num[i],rang[i],KoRang[i]));
 		}
 	}
 

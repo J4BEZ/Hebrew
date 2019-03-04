@@ -35,12 +35,14 @@ public class forMenu extends JPanel implements ActionListener{
 	String wrongList = "";
 	String colorInit = "#00B992";
 	
+	String forSizeWLOpenKr,forSizeWLOpenEn, forSizeWLClose = "";
+	
 	Color defaultColor = Color.decode(colorInit);
 	Color defaultDark = new Color(40,40,40);
-	Font defaultFontLar = new Font("나눔바른펜",Font.BOLD,30);
-	Font defaultFontBig = new Font("나눔바른펜",Font.BOLD,20);
-	Font defaultFontNor = new Font("나눔바른펜",Font.BOLD,15);
-	Font defaultFontSma = new Font("나눔바른펜",Font.BOLD,10);
+	Font defaultFontLar = new Font("나눔바른펜",Font.PLAIN,30);
+	Font defaultFontBig = new Font("나눔바른펜",Font.PLAIN,20);
+	Font defaultFontNor = new Font("나눔바른펜",Font.PLAIN,15);
+	Font defaultFontSma = new Font("나눔바른펜",Font.PLAIN,10);
 	
 	boolean quizOrNote;
 	
@@ -277,20 +279,62 @@ public class forMenu extends JPanel implements ActionListener{
 		
 	}
 	
+	public String putsCommaInArray(String[] array) {
+		String result ="";
+		for(int i =0; i<array.length; i++) {
+			if(i<array.length-1) {
+				result = result + array[i]+",";
+			}else {
+				result = result + array[i];
+			}
+		}
+		return result;
+	}
+	
 	public void wordNoteLabel(String alphabet, String hebname, String index, String korName, String uniName
-			, String shape,String number, String[] range) {
+			, String shape,String number, String[] range, String[] koRang) {
 		fa.hebAlpha.setText(alphabet);
 		fa.hebName0.setText(hebname);
 		fa.forhebInf.setText("<html><font size=+2>"+index+"</font>"
-			+ "<span color="+colorInit+">   "+korName+
-			"("+uniName+")</span><br>"
+			+ "<span color="+colorInit+">   "+forSizeWLOpenKr+korName+forSizeWLClose+
+			forSizeWLOpenEn+"("+uniName+")"+forSizeWLClose+"</span><br>"
 			+ "<font size = 1><br></font>"//줄간격을 띄어줘요!
+			
 			+ "음역:  "//TODO 아래range[0]을 배열을 받으면 , , 추가해서 문자열로 반환해주는걸로 바꾸기
-			+"<span color=#F35A62 face=Serif>"+range[0]+"</span><font color=#F35A62 size =4></font>"+"<br>"
-			+ "한글 소리값:  <span color =#0894A1>ㅇ</span><br>"
+			+"<font color=#F35A62 face=나눔바른펜>"+putsCommaInArray(range)+"</font>"+"<br>"
+			//글자체가 "맑은고딕"하면 적용이 안되었었구나
+			+ "한글 소리값:  <span color =#0894A1>"+putsCommaInArray(koRang)+"</span><br>"
 			+ "<font size = 1><br></font>"//줄간격을 띄어줘요!
 			+ "형상:  <span color =#F2B134>"+shape+"</span><br>"
 			+ "숫자값:  <span color=#112F41>"+number+"</span></html>");
+		fa.forhebInf.setBounds(5,15,190,185);
+	}
+	
+	public void WordLabelNameSize() {
+		switch(mode){
+		case modeSelect:
+		case programINF:
+		default:
+			forSizeWLOpenKr = ""; forSizeWLOpenEn=""; forSizeWLClose = "";
+			break;
+		case consonant:
+			if(indexforWordNote == 14-1 || indexforWordNote == 16-1 
+			|| indexforWordNote ==19-1||indexforWordNote ==21-1
+			||indexforWordNote==24-1||indexforWordNote==25-1||indexforWordNote==29-1) {
+				forSizeWLOpenKr = "<font size=5>";forSizeWLClose ="</font>";
+				if(indexforWordNote==14-1 || indexforWordNote==16-1||indexforWordNote==29-1) {
+					forSizeWLOpenEn ="<font size =4>";
+				}else {
+					forSizeWLOpenEn ="<font size =5>";
+				}
+			}else {
+				forSizeWLOpenKr = ""; forSizeWLOpenEn =""; forSizeWLClose = "";
+			}
+			break;
+		case vowel:
+			forSizeWLOpenKr = ""; forSizeWLOpenEn =""; forSizeWLClose = "";
+			break;
+		}
 	}
 	
 	public void NextPrev(int size,int max) {//이전, 다음 버튼 활성화 비활성화
@@ -326,7 +370,9 @@ public class forMenu extends JPanel implements ActionListener{
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
+		WordLabelNameSize();//앞 뒤에 붙는 <font size조절>
 		//메뉴 선택바
+		
 		if(menuList.getSelectedItem().equals("모드를 선택해주세요")) {
 			int randomIndex = 0;
 			if(mode != menuMode.modeSelect) {
@@ -356,7 +402,7 @@ public class forMenu extends JPanel implements ActionListener{
 				wordNoteLabel(hc.CS.get(indexforWordNote).alphabet,hc.CS.get(indexforWordNote).hebname,
 						hc.CS.get(indexforWordNote).index,hc.CS.get(indexforWordNote).korName,
 						hc.CS.get(indexforWordNote).uniName,hc.CS.get(indexforWordNote).shape,
-						hc.CS.get(indexforWordNote).number,hc.CS.get(indexforWordNote).range);
+						hc.CS.get(indexforWordNote).number,hc.CS.get(indexforWordNote).range,hc.CS.get(indexforWordNote).KoRange);
 			}
 			thumbnail.setVisible(false);
 		}
@@ -393,6 +439,7 @@ public class forMenu extends JPanel implements ActionListener{
 			fa.showUnderLineBool = false;
 		}
 		
+
 		if(this.mode == menuMode.consonant) {
 			if(!quizOrNote) {
 				if(e.getSource()==nextWord) {
@@ -402,7 +449,7 @@ public class forMenu extends JPanel implements ActionListener{
 					wordNoteLabel(hc.CS.get(indexforWordNote).alphabet,hc.CS.get(indexforWordNote).hebname,
 							hc.CS.get(indexforWordNote).index,hc.CS.get(indexforWordNote).korName,
 							hc.CS.get(indexforWordNote).uniName,hc.CS.get(indexforWordNote).shape,
-							hc.CS.get(indexforWordNote).number,hc.CS.get(indexforWordNote).range);
+							hc.CS.get(indexforWordNote).number,hc.CS.get(indexforWordNote).range,hc.CS.get(indexforWordNote).KoRange);
 				}
 				if(e.getSource()==prevWord) {
 					if(indexforWordNote>0) {
@@ -411,7 +458,7 @@ public class forMenu extends JPanel implements ActionListener{
 					wordNoteLabel(hc.CS.get(indexforWordNote).alphabet,hc.CS.get(indexforWordNote).hebname,
 							hc.CS.get(indexforWordNote).index,hc.CS.get(indexforWordNote).korName,
 							hc.CS.get(indexforWordNote).uniName,hc.CS.get(indexforWordNote).shape,
-							hc.CS.get(indexforWordNote).number,hc.CS.get(indexforWordNote).range);
+							hc.CS.get(indexforWordNote).number,hc.CS.get(indexforWordNote).range,hc.CS.get(indexforWordNote).KoRange);
 				}
 				NextPrev(indexforWordNote,hc.CS.size()-1);
 				}
