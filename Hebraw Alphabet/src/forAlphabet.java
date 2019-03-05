@@ -119,7 +119,7 @@ public class forAlphabet extends JPanel implements ActionListener{
 	spForheb = new JScrollPane(hebDiscription,JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
 			JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 	B.getContentPane().add(spForheb);
-	spForheb.setBounds(190,220,390,140);
+	spForheb.setBounds(190,220,390,290);
 	////////////////////////////////////////////////////////////
 	hebAlpha.setVisible(false);
 	hebName0.setVisible(false);
@@ -193,6 +193,10 @@ public class forAlphabet extends JPanel implements ActionListener{
 				nickname.setVisible(false);
 				spForprog.setVisible(false);
 				///////////////////////////////
+				
+				////////사이즈 조정////////////////
+				B.setSize(600,400);
+				fm.setSize(180,355);
 			break;
 			
 			case consonant:
@@ -211,14 +215,19 @@ public class forAlphabet extends JPanel implements ActionListener{
 					BorderforAlpha.setVisible(false);
 					forhebInf.setVisible(false);
 					spForheb.setVisible(false);
+					////////사이즈 조정////////////////
+					B.setSize(600,400);
+					fm.setSize(180,355);
 				}
 				else {
-				hebAlpha.setVisible(true);
-				hebName0.setVisible(true);
-				BorderforAlpha.setVisible(true);
-				forhebInf.setVisible(true);
-				spForheb.setVisible(true);
-					
+					hebAlpha.setVisible(true);
+					hebName0.setVisible(true);
+					BorderforAlpha.setVisible(true);
+					forhebInf.setVisible(true);
+					spForheb.setVisible(true);
+					////////사이즈 조정////////////////
+					B.setSize(600,550);
+					fm.setSize(180,505);
 				}
 			break;
 			
@@ -238,6 +247,9 @@ public class forAlphabet extends JPanel implements ActionListener{
 			nickname.setVisible(true);
 			spForprog.setVisible(true);
 			///////////////////////////////
+			////////사이즈 조정////////////////
+			B.setSize(600,400);
+			fm.setSize(180,355);
 			break;
 			
 			default:
