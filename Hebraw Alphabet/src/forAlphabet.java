@@ -18,9 +18,8 @@ public class forAlphabet extends JPanel implements ActionListener{
 	JLabel nickname;
 
 	JCheckBox showLine;
-	
-	JTextPane hebDiscription; 
-	JEditorPane progDiscription;
+
+	JEditorPane progDiscription,hebDiscription;
 	JScrollPane spForheb, spForprog;
 	
 	
@@ -109,11 +108,10 @@ public class forAlphabet extends JPanel implements ActionListener{
 	
 	/////////////////////////////////////////////////////////////
 	//알파벳 관련 정보를 저장해두는 텍스트 영역(?_?)
-	hebDiscription = new JTextPane();//TODO
-	hebDiscription.setText("테스트를 위해 배열의 첫번째 항목 (rang[0])만 나오도록 했습니다\n\n\n\n\n\n\n");
-	hebDiscription.setFont(fm.defaultFontNor);
+	hebDiscription = new JEditorPane();//TODO
 	hebDiscription.setBackground(Color.WHITE);
 	hebDiscription.setDisabledTextColor(new Color(40,40,40));
+	hebDiscription.setBackground(Color.decode("#282c34"));
 	hebDiscription.setDragEnabled(true);
 	hebDiscription.setEditable(false);
 
@@ -147,7 +145,7 @@ public class forAlphabet extends JPanel implements ActionListener{
 		//프로그램 정보
 		//TODO 여기 부분 JEditorPane이용해서 글자체 변경 등 넣기
 		progDiscription = new JEditorPane();
-		java.net.URL programInf = forAlphabet.class.getResource("programInform.html");
+		java.net.URL programInf = forAlphabet.class.getResource("InformHtml/programInform.html");
 		if(programInf !=null) {
 			try {
 				progDiscription.setPage(programInf);
@@ -242,7 +240,6 @@ public class forAlphabet extends JPanel implements ActionListener{
 			///////////////////////////////
 			break;
 			
-			
 			default:
 				System.out.println("에러: 등록되지 않은 모드입니다");
 				break;
@@ -295,7 +292,7 @@ public class forAlphabet extends JPanel implements ActionListener{
 			g2d.drawLine(220, 55, 370, 55);
 			g2d.drawLine(220, 100, 370, 100);
 			g2d.drawLine(220, 145, 370, 145);
-			//g2d.drawLine(20, 190, 170, 190);
+			//g2d.drawLine(220, 190, 370, 190);
 		}
 	repaint();
 	}

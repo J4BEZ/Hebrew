@@ -1,6 +1,7 @@
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
+import java.io.IOException;
 
 
 enum menuMode{
@@ -35,7 +36,7 @@ public class forMenu extends JPanel implements ActionListener{
 	String wrongList = "";
 	String colorInit = "#00B992";
 	
-	String forSizeWLOpenKr,forSizeWLOpenEn, forSizeWLClose = "";
+	String forSizeWLOpenKr,forSizeWLOpenEn, forSizeWLClose= "";
 	
 	Color defaultColor = Color.decode(colorInit);
 	Color defaultDark = new Color(40,40,40);
@@ -87,7 +88,7 @@ public class forMenu extends JPanel implements ActionListener{
 		add(menuList);
 		
 		//썸네일
-		thumbnail = new JLabel("יַעְבֵּץ");
+		thumbnail = new JLabel("אלפבית עברי");
 		thumbnail.setFont(new Font("Serif",Font.BOLD,30));
 		thumbnail.setForeground(defaultColor);
 		thumbnail.setBounds(5,300,170,50);
@@ -224,6 +225,7 @@ public class forMenu extends JPanel implements ActionListener{
 		switch(m) {
 		case modeSelect:
 		case programINF:
+			thumbnail.setVisible(true);
 			wordNote.setVisible(false);
 			quiz.setVisible(false);
 			
@@ -244,6 +246,7 @@ public class forMenu extends JPanel implements ActionListener{
 		case vowel:
 			wordNote.setVisible(true);
 			quiz.setVisible(true);
+			thumbnail.setVisible(false);
 			
 			if(quizOrNote) {
 				incTitle.setVisible(true);
@@ -278,12 +281,23 @@ public class forMenu extends JPanel implements ActionListener{
 		}
 		
 	}
+	public void setPage(JEditorPane jp, java.net.URL URL) {
+		if(URL!=null) {
+			try {
+				jp.setPage(URL);
+			}catch(IOException e) {
+				System.err.println("링크가 잘못되었어요");
+			}
+		}else {
+			System.err.println(URL+"파일이 누락되었습니다.");
+		}
+	}
 	
-	public String putsCommaInArray(String[] array) {
+	public String putsCommaInArray(String[] array) {//,를 넣어!
 		String result ="";
 		for(int i =0; i<array.length; i++) {
 			if(i<array.length-1) {
-				result = result + array[i]+",";
+				result = result + array[i]+", ";
 			}else {
 				result = result + array[i];
 			}
@@ -301,7 +315,7 @@ public class forMenu extends JPanel implements ActionListener{
 			+ "<font size = 1><br></font>"//줄간격을 띄어줘요!
 			
 			+ "음역:  "//TODO 아래range[0]을 배열을 받으면 , , 추가해서 문자열로 반환해주는걸로 바꾸기
-			+"<font color=#F35A62 face=나눔바른펜>"+putsCommaInArray(range)+"</font>"+"<br>"
+			+"<span color=#F35A62 face=나눔바른펜>"+putsCommaInArray(range)+"</span>"+"<br>"
 			//글자체가 "맑은고딕"하면 적용이 안되었었구나
 			+ "한글 소리값:  <span color =#0894A1>"+putsCommaInArray(koRang)+"</span><br>"
 			+ "<font size = 1><br></font>"//줄간격을 띄어줘요!
@@ -310,7 +324,7 @@ public class forMenu extends JPanel implements ActionListener{
 		fa.forhebInf.setBounds(5,15,190,185);
 	}
 	
-	public void WordLabelNameSize() {
+	public void WordLabelNameSize() {//이걸로도 페, 페소핏은 p̄때문에 안됨 ㅠㅠㅠ
 		switch(mode){
 		case modeSelect:
 		case programINF:
@@ -319,8 +333,7 @@ public class forMenu extends JPanel implements ActionListener{
 			break;
 		case consonant:
 			if(indexforWordNote == 14-1 || indexforWordNote == 16-1 
-			|| indexforWordNote ==19-1||indexforWordNote ==21-1
-			||indexforWordNote==24-1||indexforWordNote==25-1||indexforWordNote==29-1) {
+			||indexforWordNote==19-1||indexforWordNote ==21-1||indexforWordNote==29-1) {
 				forSizeWLOpenKr = "<font size=5>";forSizeWLClose ="</font>";
 				if(indexforWordNote==14-1 || indexforWordNote==16-1||indexforWordNote==29-1) {
 					forSizeWLOpenEn ="<font size =4>";
@@ -393,7 +406,6 @@ public class forMenu extends JPanel implements ActionListener{
 			}
 			wordNote.setSelected(true);
 			showUnderLine.setSelected(false);
-			thumbnail.setVisible(true);
 		}
 		else if(menuList.getSelectedItem().equals("자음")) {
 			if(mode != menuMode.consonant) {
@@ -403,8 +415,9 @@ public class forMenu extends JPanel implements ActionListener{
 						hc.CS.get(indexforWordNote).index,hc.CS.get(indexforWordNote).korName,
 						hc.CS.get(indexforWordNote).uniName,hc.CS.get(indexforWordNote).shape,
 						hc.CS.get(indexforWordNote).number,hc.CS.get(indexforWordNote).range,hc.CS.get(indexforWordNote).KoRange);
+				setPage(fa.hebDiscription,hc.CS.get(indexforWordNote).alphabetInf);
 			}
-			thumbnail.setVisible(false);
+			
 		}
 		else if(menuList.getSelectedItem().equals("모음")) {
 			if(mode != menuMode.vowel) {
@@ -418,7 +431,6 @@ public class forMenu extends JPanel implements ActionListener{
 				wordNote.setSelected(true);
 			}
 			showUnderLine.setSelected(false);
-			thumbnail.setVisible(true);
 		}
 		//메뉴 동기화
 		
@@ -450,6 +462,7 @@ public class forMenu extends JPanel implements ActionListener{
 							hc.CS.get(indexforWordNote).index,hc.CS.get(indexforWordNote).korName,
 							hc.CS.get(indexforWordNote).uniName,hc.CS.get(indexforWordNote).shape,
 							hc.CS.get(indexforWordNote).number,hc.CS.get(indexforWordNote).range,hc.CS.get(indexforWordNote).KoRange);
+					setPage(fa.hebDiscription,hc.CS.get(indexforWordNote).alphabetInf);
 				}
 				if(e.getSource()==prevWord) {
 					if(indexforWordNote>0) {
@@ -459,6 +472,7 @@ public class forMenu extends JPanel implements ActionListener{
 							hc.CS.get(indexforWordNote).index,hc.CS.get(indexforWordNote).korName,
 							hc.CS.get(indexforWordNote).uniName,hc.CS.get(indexforWordNote).shape,
 							hc.CS.get(indexforWordNote).number,hc.CS.get(indexforWordNote).range,hc.CS.get(indexforWordNote).KoRange);
+					
 				}
 				NextPrev(indexforWordNote,hc.CS.size()-1);
 				}
