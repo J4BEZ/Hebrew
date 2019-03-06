@@ -44,7 +44,7 @@ public class forAlphabet extends JPanel implements ActionListener{
 	forAlphabet(JFrame quizBoard, JPanel forMenu){
 		this.B = (quizboard)quizBoard; this.fm = (forMenu)forMenu;
 		setLayout(null);
-		setSize(390,355);
+		setSize(390,505);
 		this.setBorder(BorderFactory.createEtchedBorder());
 		
 		forMainMenu();
@@ -60,7 +60,7 @@ public class forAlphabet extends JPanel implements ActionListener{
 		menuIntro = new JLabel("<html><center>환영합니다 :D</center></html>");
 		menuIntro.setFont(fm.defaultFontLar);
 		menuIntro.setForeground(fm.defaultColor);
-		menuIntro.setBounds(120,60,390,60);
+		menuIntro.setBounds(120,125,390,60);
 		add(menuIntro);
 		
 		//개꿀팁! JLabel 줄 바꿈은 HTML로 가능
@@ -69,7 +69,7 @@ public class forAlphabet extends JPanel implements ActionListener{
 		Biblekor.setHorizontalAlignment(SwingConstants.CENTER);
 		Biblekor.setVerticalAlignment(SwingConstants.CENTER);
 		Biblekor.setForeground(fm.defaultDark);
-		Biblekor.setBounds(10,120,370,200);
+		Biblekor.setBounds(10,195,370,200);
 		add(Biblekor);
 	}
 	
@@ -136,11 +136,11 @@ public class forAlphabet extends JPanel implements ActionListener{
 			System.out.println("오류:: 로고이미지가 분실되었습니다.");
 		}
 		//닉네임 레이블
-		nickname = new JLabel("J4BEZ");
+		/*nickname = new JLabel("J4BEZ");
 		nickname.setFont(fm.defaultFontLar);
 		nickname.setForeground(fm.defaultColor);
 		nickname.setBounds(80,155,100,50);
-		add(nickname);
+		add(nickname);*/
 		 
 		//프로그램 정보
 		//TODO 여기 부분 JEditorPane이용해서 글자체 변경 등 넣기
@@ -164,9 +164,9 @@ public class forAlphabet extends JPanel implements ActionListener{
 		spForprog = new JScrollPane(progDiscription,JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
 				JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 		B.getContentPane().add(spForprog);
-		spForprog.setBounds(360,8,220,352);
+		spForprog.setBounds(191,10,385,500);
 		
-		nickname.setVisible(false);
+		//nickname.setVisible(false);
 		spForprog.setVisible(false);
 	}
 	
@@ -190,13 +190,10 @@ public class forAlphabet extends JPanel implements ActionListener{
 				////////////////////
 				
 				///////프로그램 정보관련/////////////
-				nickname.setVisible(false);
+				//nickname.setVisible(false);
 				spForprog.setVisible(false);
 				///////////////////////////////
 				
-				////////사이즈 조정////////////////
-				B.setSize(600,400);
-				fm.setSize(180,355);
 			break;
 			
 			case consonant:
@@ -206,7 +203,7 @@ public class forAlphabet extends JPanel implements ActionListener{
 				Biblekor.setVisible(false);
 				/////////////////////////////
 				///////프로그램 정보관련/////////////
-				nickname.setVisible(false);
+				//nickname.setVisible(false);
 				spForprog.setVisible(false);
 				///////////////////////////////
 				if(fm.quizOrNote) {
@@ -215,9 +212,7 @@ public class forAlphabet extends JPanel implements ActionListener{
 					BorderforAlpha.setVisible(false);
 					forhebInf.setVisible(false);
 					spForheb.setVisible(false);
-					////////사이즈 조정////////////////
-					B.setSize(600,400);
-					fm.setSize(180,355);
+
 				}
 				else {
 					hebAlpha.setVisible(true);
@@ -225,9 +220,7 @@ public class forAlphabet extends JPanel implements ActionListener{
 					BorderforAlpha.setVisible(true);
 					forhebInf.setVisible(true);
 					spForheb.setVisible(true);
-					////////사이즈 조정////////////////
-					B.setSize(600,550);
-					fm.setSize(180,505);
+					
 				}
 			break;
 			
@@ -244,12 +237,10 @@ public class forAlphabet extends JPanel implements ActionListener{
 			spForheb.setVisible(false);
 			////////////////////
 			///////프로그램 정보관련/////////////
-			nickname.setVisible(true);
+			//nickname.setVisible(true);
 			spForprog.setVisible(true);
 			///////////////////////////////
 			////////사이즈 조정////////////////
-			B.setSize(600,400);
-			fm.setSize(180,355);
 			break;
 			
 			default:
@@ -265,7 +256,7 @@ public class forAlphabet extends JPanel implements ActionListener{
 		if(fm!=null) {
 			switch(fm.mode) {
 			case modeSelect:
-				this.setSize(390,355);
+				this.setSize(390,505);
 				break;
 			case consonant://흰네모와 밑줄은 자음/모음 일 경우에만 표시됩니다.
 			case vowel://(이 외의 다른 레이블들도 모드에따라 나타나거나 안보이도록 설정할거에요)
@@ -274,16 +265,16 @@ public class forAlphabet extends JPanel implements ActionListener{
 					underLine(g2d);
 				}
 				else {
-					this.setSize(390,355);
+					this.setSize(390,505);
 				}
 				break;
 			case programINF:
-				this.setSize(160,200);
+				this.setSize(1,1);//0,0하면 아예 사라져 버려서 size 변경이 안되영
 				g2d.setColor(forUnderLine);
 				g2d.setStroke(new BasicStroke(3));
 				g2d.setColor(Color.white);
 				g2d.fillRect(0, 0, 160, 200);
-				g2d.drawImage(logo, 5, 5, 155, 155, 0, 0, 150, 150, this);
+				//g2d.drawImage(logo, 5, 5, 155, 155, 0, 0, 150, 150, this);
 				break;
 			default:
 				break;

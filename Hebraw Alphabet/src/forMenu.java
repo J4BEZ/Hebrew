@@ -74,7 +74,7 @@ public class forMenu extends JPanel implements ActionListener{
 		////////////////////////////////////////////////////////////////////////////////////////
 		
 		setLayout(null);
-		setSize(180,355);
+		setSize(180,505);//height+150
 		this.setBorder(BorderFactory.createEtchedBorder());
 		
 		//메뉴
@@ -91,7 +91,7 @@ public class forMenu extends JPanel implements ActionListener{
 		thumbnail = new JLabel("אלפבית עברי");
 		thumbnail.setFont(new Font("Serif",Font.BOLD,30));
 		thumbnail.setForeground(defaultColor);
-		thumbnail.setBounds(5,300,170,50);
+		thumbnail.setBounds(5,450,170,50);
 		thumbnail.setVisible(true);
 		add(thumbnail);
 
@@ -129,7 +129,7 @@ public class forMenu extends JPanel implements ActionListener{
 	public void forNote() {
 		showUnderLine = new JCheckBox("안내선");
 		showUnderLine.setFont(defaultFontNor);
-		showUnderLine.setBounds(5,220,100,40);
+		showUnderLine.setBounds(5,370,100,40);
 		showUnderLine.addActionListener(this);
 		add(showUnderLine);
 		
@@ -137,7 +137,7 @@ public class forMenu extends JPanel implements ActionListener{
 		prevWord.setForeground(defaultColor);
 		prevWord.setBackground(Color.WHITE);
 		prevWord.setFont(defaultFontNor);
-		prevWord.setBounds(5,280,80,40);
+		prevWord.setBounds(5,420,80,60);
 		prevWord.addActionListener(this);
 		add(prevWord);
 		
@@ -145,7 +145,7 @@ public class forMenu extends JPanel implements ActionListener{
 		nextWord.setForeground(Color.WHITE);
 		nextWord.setBackground(defaultColor);
 		nextWord.setFont(defaultFontNor);
-		nextWord.setBounds(90,280,80,40);
+		nextWord.setBounds(90,420,80,60);
 		nextWord.addActionListener(this);
 		add(nextWord);
 		
@@ -185,13 +185,13 @@ public class forMenu extends JPanel implements ActionListener{
 		type.setForeground(defaultColor);
 		//위 사항은 '뜻:', '이름(한글):' '발음:', '수:' 으로 분화될 예정입니다.
 		type.setFont(defaultFontNor);
-		type.setBounds(5,250,40,30);
+		type.setBounds(5,400,40,30);
 		add(type);
 		
 		//정답 입력 텍스트 필드
 		submitArea = new JTextField(15);
 		submitArea.setFont(defaultFontNor);
-		submitArea.setBounds(5,280,100,25);
+		submitArea.setBounds(5,430,100,25);
 		add(submitArea);
 		
 		//정답 제출 버튼
@@ -199,7 +199,7 @@ public class forMenu extends JPanel implements ActionListener{
 		submit.setFont(defaultFontNor);
 		submit.setForeground(Color.WHITE);
 		submit.setBackground(defaultColor);
-		submit.setBounds(110,280,65,24);
+		submit.setBounds(110,430,65,24);
 		submit.addActionListener(this);
 		add(submit);
 		
@@ -208,7 +208,7 @@ public class forMenu extends JPanel implements ActionListener{
 		nextQuiz.setFont(defaultFontNor);
 		nextQuiz.setForeground(Color.WHITE);
 		nextQuiz.setBackground(defaultColor);
-		nextQuiz.setBounds(5,310,170,40);
+		nextQuiz.setBounds(5,460,170,40);
 		nextQuiz.addActionListener(this);
 		add(nextQuiz);
 		
